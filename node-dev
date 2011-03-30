@@ -21,9 +21,16 @@ var fs = require('fs'),
 
 args.shift();
 
+for (var i=0, ln=args.length; i<ln; i++){
+	if (/\.coffee$/.test(args[i])){
+		cmd = 'coffee';
+		break;
+	}
+}
+
 function walk(filename, callback) {
 	var stats = fs.statSync(filename);
-	if(stats.isFile() && filename.match(/\.js$/)) {
+	if(stats.isFile() && /\.(?:js|coffee)$/.test(filename)) {
 		callback(filename);
 	}
 	else if(stats.isDirectory()) {
@@ -132,7 +139,7 @@ function start(title, msg) {
 
 		error += s;
 
-		stack = s.match(/^(.+): (.*)\n\s+at.+\((.*?):(\d+):(\d+)/m);
+		stack = s.match(/^(.+): (.*)/m);
 		if (stack) {
 
 			// file:line
