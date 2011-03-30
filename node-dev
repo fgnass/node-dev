@@ -138,8 +138,8 @@ function start(title, msg) {
 		var s = data.toString(), stack, src, m, file, line, col;
 
 		error += s;
-
-		stack = s.match(/^(.+): (.*)/m);
+		
+		stack = s.match(/^(.+): (.*)\n\s+at\s?.+?\s\(?(.*?):(\d+):(\d+)/m);
 		if (stack) {
 
 			// file:line
