@@ -42,15 +42,19 @@ for (var i=1; i < process.argv.length; i++) {
 /** Resolve the location of the main script relative to cwd */
 var main = Path.resolve(process.cwd(), arg);
 
+var fileExt = main.match(/\.\w+$/)[0];
+if (fileExt == '.coffee')
+  require('coffee-script');
+
 /** Hook into `require()` */
-var requireJs = require.extensions['.js'];
-require.extensions['.js'] = function(module, filename) {
+var _require = require.extensions[fileExt];
+require.extensions[fileExt] = function(module, filename) {
   if (module.id == main) {
     module.id = '.';
     module.parent = null;
   }
   watch(module);
-  requireJs(module, filename);
+  _require(module, filename);
 };
 
 /** Load the wrapped script */
