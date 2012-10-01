@@ -44,9 +44,12 @@ Settings
 
 You can set the `NODE_DEV_CLEARSCREEN` environment variable to `true` if in order to automatically clear the terminal screen upon restarts.
 
+You can also set `NODE_DEV_IGNORE` environment variable to a list of paths separated by `:`. All files inside these paths will be ignored.
+
 
 Contributors
 ============
 
 * [Ricardo Tomasi](https://github.com/ricardobeat) (CoffeeScript support)
 * [Sergey Ovechkin](https://github.com/pomeo) (libnotify support)
+* [Alex Gorbatchev](https://github.com/alexgorbatchev) (`NODE_DEV_IGNORE` support)

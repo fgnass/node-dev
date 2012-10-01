@@ -9,7 +9,9 @@ var fs = require('fs')
   , spawn = require('child_process').spawn
   , growl = require('growl')
   , clearScreen = /true|yes|on|1/i.test(process.env.NODE_DEV_CLEARSCREEN)
+  , ignorePaths = (process.env.NODE_DEV_IGNORE || '').split(/:/g)
   , wrapper = module    // Save a reference to this module
+  , watchedFiles = {}
 
 // Remove wrapper.js from the argv array
 process.argv.splice(1, 1)
@@ -19,6 +21,11 @@ process.argv[0] = process.execPath = process.env.NODE_DEV
 
 // Resolve the location of the main script relative to cwd
 var main = Path.resolve(process.cwd(), process.argv[1])
+
+ignorePaths = ignorePaths.map(function(path)
+{
+	return Path.resolve(process.cwd(), path)
+})
 
 /**
  * Logs a message to the console. The level is displayed in ANSI colors,
@@ -62,7 +69,16 @@ function checkExitCode(code) {
  */
 function watch(file) {
   watchFile(file, function() {
+    var dir = Path.dirname(file)
+
     if (clearScreen) process.stdout.write('\033[2J\033[H')
+
+    for (var i = 0; i < ignorePaths.length; i++)
+      if (dir.indexOf(ignorePaths[i]) === 0) {
+        notify('Not restarting', file + ' has been modified, but was ignored')
+        return
+      }
+
     notify('Restarting', file + ' has been modified')
     triggerRestart()
   })
@@ -70,6 +86,11 @@ function watch(file) {
 
 var watchFileSupported = !!fs.watchFile
 function watchFile(file, onChange) {
+  // make sure we don't watch the same file more than once, this might happen if we are ignoring files 
+  if (watchedFiles[file])
+    return
+
+  watchedFiles[file] = true
 
   fs.stat(file, function(err, stats) {
     if (err) throw err
