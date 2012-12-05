@@ -35,7 +35,7 @@ function log(msg, level) {
 function notify(title, msg, level) {
   level = level || 'info'
   log(title || msg, level)
-  growl(msg, { title: title || 'node.js', image: __dirname + '/icons/node_' + level + '.png' })
+  growl(msg, { title: title || 'node.js', image: __dirname + '/icons/node_' + level + '.png', sticky: false })
 }
 
 /**
@@ -164,14 +164,18 @@ patch(vm, 'runInContext', 2)
 
 // Error handler that displays a notification and logs the stack to stderr:
 process.on('uncaughtException', function(err) {
- notify(err.name, err.message, 'error')
- console.error(err.stack || err)
+  notify(err.name, err.message, 'error')
+  console.error(err.stack || err)
 })
 
 process.on('exit', checkExitCode)
 
 if (Path.extname(main) == '.coffee') {
   require('coffee-script')
+}
+
+if (Path.extname(main) == '.ls') {
+  require('LiveScript')
 }
 
 require(main)
