@@ -54,6 +54,7 @@ directory which – if present – overwrites the global settings.
 * __clear__ – Whether to clear the screen upon restarts. _Default:_ `false`
 * __extensions__ – Modules to load based bad on extension of the main script. _Default:_
   `{ coffee: "coffee-script", ls: "LiveScript" }`
+* __env__ – Environment key-value pairs to run the script with. _Default:_ {}
 
 ### The MIT License (MIT)
 
