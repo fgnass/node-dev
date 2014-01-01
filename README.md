@@ -1,21 +1,23 @@
 [![Build Status](https://secure.travis-ci.org/fgnass/node-dev.png)](http://travis-ci.org/fgnass/node-dev)
 
-# node-dev
+# node-dev-env
 
-Node-dev is a development tool for [Node.js](http://nodejs.org) that
+Node-dev-env is a development tool for [Node.js](http://nodejs.org) that
 automatically restarts the node process when a script is modified.
 
 It's an alternative to tools like
 [supervisor](https://github.com/isaacs/node-supervisor) or
 [nodemon](https://github.com/remy/nodemon) that doesn't require any
-configuration. Just run `node-dev foo.js` as you would normally run `node` and
+configuration. Just run `node-dev-env foo.js` as you would normally run `node` and
 it will automatically figure out which files need to be watched.
 
 You may also use node-dev with [CoffeeScript](http://http://coffeescript.org/)
-or [LiveScript](http://livescript.net/) apps. Just run `node-dev app.coffee`
-or `node-dev app.ls`. You may also register additional language flavors by
+or [LiveScript](http://livescript.net/) apps. Just run `node-dev-env app.coffee`
+or `node-dev-env app.ls`. You may also register additional language flavors by
 adding them to the extensions list in your [.node-dev.json](#settings) config
 file.
+
+__Note:__ this is a fork from fgnass/node-dev because I needed the ability to set env vars in the config file and could not wait for the changes to be merged
 
 ### Desktop Notifications
 
@@ -31,7 +33,7 @@ Status and error messages can be displayed as desktop notification using either
 
 Node-dev can be installed via [npm](http://github.com/isaacs/npm):
 
-    npm install -g node-dev
+    npm install -g node-dev-env
 
 In order to use Growl notifications
 [growlnotify](http://growl.info/extras.php#growlnotify) must be installed on
