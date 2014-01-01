@@ -1,5 +1,5 @@
 {
-  "name": "node-dev",
+  "name": "node-dev-env",
   "version": "2.1.0",
   "description": "Restarts your app when files are modified",
   "keywords": [
@@ -12,7 +12,7 @@
   "author": "Felix Gnass",
   "repository": {
     "type": "git",
-    "url": "http://github.com/fgnass/node-dev.git"
+    "url": "http://github.com/blakevanlan/node-dev-env.git"
   },
   "license": "MIT",
   "bin": {

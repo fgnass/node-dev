@@ -56,7 +56,7 @@ describe('node-dev', function() {
     run('server.coffee', done)
   })
 
-  it('should handle errors', function(done) {
+  it.only('should handle errors', function(done) {
     spawn('error.js', function(out) {
       if (out.match(/ERROR/)) {
         touchFile()

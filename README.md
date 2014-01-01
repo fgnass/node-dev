@@ -8,16 +8,16 @@ automatically restarts the node process when a script is modified.
 It's an alternative to tools like
 [supervisor](https://github.com/isaacs/node-supervisor) or
 [nodemon](https://github.com/remy/nodemon) that doesn't require any
-configuration. Just run `node-dev-env foo.js` as you would normally run `node` and
+configuration. Just run `node-dev foo.js` as you would normally run `node` and
 it will automatically figure out which files need to be watched.
 
 You may also use node-dev with [CoffeeScript](http://http://coffeescript.org/)
-or [LiveScript](http://livescript.net/) apps. Just run `node-dev-env app.coffee`
+or [LiveScript](http://livescript.net/) apps. Just run `node-dev app.coffee`
 or `node-dev-env app.ls`. You may also register additional language flavors by
 adding them to the extensions list in your [.node-dev.json](#settings) config
 file.
 
-__Note:__ this is a fork from fgnass/node-dev because I needed the ability to set env vars in the config file and could not wait for the changes to be merged
+__Note:__ this is a fork from [fgnass/node-dev](https://github.com/fgnass/node-dev) because I needed the ability to set env vars in the config file and could not wait for the changes to be merged
 
 ### Desktop Notifications
 
