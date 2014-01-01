@@ -1,6 +1,7 @@
 var fs = require('fs')
   , child = require('child_process')
   , expect = require('expect.js')
+  , fs = require('fs')
 
 var dir = __dirname +  '/fixture'
   , bin = __dirname + '/../bin/node-dev'
@@ -167,6 +168,20 @@ describe('node-dev', function() {
         }, 500)
       })
       return { exit: done }
+    })
+  })
+
+  it('should set env vars from config for child process', function(done) {
+    var configPath = dir + '/.node-dev.json'
+    fs.writeFileSync(configPath, '{"env":{"SOME_TEST_VAR":"something"}}')
+    expect(process.env.SOME_TEST_VAR).to.be(undefined);
+    process.nextTick(function() {
+      spawn('env.js', function(out) {
+        expect(out).to.match(/something/)
+        fs.unlinkSync(configPath)
+        done()
+        return 'kill'
+      })
     })
   })
 
