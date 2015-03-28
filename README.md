@@ -82,6 +82,7 @@ options you can set to tweak its behaviour:
 * `fork` – Whether to hook into [child_process.fork](http://nodejs.org/docs/latest/api/child_process.html#child_process_child_process_fork_modulepath_args_options) (required for [clustered](http://nodejs.org/docs/latest/api/cluster.html) programs). _Default:_ `true`
 * `deps` – How many levels of dependencies should be watched. _Default:_ `1`
 * `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
+* `growl` – Force use of Growl and/or set Growl options
 
 Upon startup node-dev looks for a `.node-dev.json` file in the user's HOME
 directory. It will also look for a `.node-dev.json` file in the same directory
@@ -163,6 +164,22 @@ This might be useful when you are running a [universal][universal-javascript]
 (isomorphic) web app that shares modules across the server and client, e.g.
 [React.js](react) components for server-side rendering, which you don’t want to trigger a
 server restart when changed, since it introduces an unnecessary delay.
+
+### Growl settings
+
+Any value for the `growl` config setting forces the use of Growl.  You
+can also set the Growl application name used, and the hostname and
+port for your Growl server:
+
+```json
+    {
+        "growl": {
+            "name": "node-dev",
+            "host": "localhost",
+            "port": 23053
+        }
+    }
+```
 
 ## License
 
