@@ -7,6 +7,7 @@ var dir = __dirname +  '/fixture'
   , bin = __dirname + '/../bin/node-dev'
   , msgFile = dir + '/message.js'
   , ignoredFile = dir + '/ignoredModule.js'
+  , ignoredPatternFile = dir + '/ignores/ignoredModule.js'
 
 
 // Constants
@@ -76,7 +77,27 @@ test('should not restart the server for ignored modules', function(t) {
   ps = spawn('server.js', function(out) {
     if (out.match(/touch message.js/)) {
       setTimeout(touchFile(ignoredFile), 500)
+      var successTimeoutId = setTimeout(function () {
+        ps.removeAllListeners('exit')
+        ps.kill()
 
+        t.end()
+      }, 1000);
+
+      return function(out) {
+        clearTimeout(successTimeoutId)
+        t.fail('server restarted unexpectedly')
+
+        return { exit: t.end.bind(t) }
+      }
+    }
+  })
+})
+
+test('should not restart the server for ignore pattern modules', function(t) {
+  ps = spawn('server.js', function(out) {
+    if (out.match(/touch message.js/)) {
+      setTimeout(touchFile(ignoredPatternFile), 500)
       var successTimeoutId = setTimeout(function () {
         ps.removeAllListeners('exit')
         ps.kill()

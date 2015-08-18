@@ -1,6 +1,7 @@
 {
   "notify": false,
   "ignore": [
-    "./ignoredModule.js"
+    "./ignoredModule.js",
+    "./ignores/*.js"
   ]
 }
