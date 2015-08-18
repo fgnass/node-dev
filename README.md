@@ -80,7 +80,7 @@ options you can set to tweak its behaviour:
 * `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
 
 Upon startup node-dev looks for a `.node-dev.json` file in the user's HOME
-directory. It will also look for a `.node-dev.json` file in the same directory
+directory and execution directory. It will also look for a `.node-dev.json` file in the same directory
 as the script to be run, which (if present) overwrites the per-user settings.
 
 ### Dedupe linked modules
@@ -131,7 +131,7 @@ list them in the `.node-dev.json` configuration under `"ignore"`, e.g.
 ```json
 {
   "ignore": [
-    "client/scripts",
+    "client/**/*.js",
     "shared/module.js"
   ]
 }

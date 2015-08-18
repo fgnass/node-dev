@@ -20,8 +20,8 @@ function touchFile(file) {
   }
 }
 
-function spawn(cmd, cb) {
-  var ps = child.spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir })
+function spawn(cmd, cb, cwd) {
+  var ps = child.spawn('node', [bin].concat(cmd.split(' ')), { cwd: cwd ? cwd:dir })
     , out = ''
 
   if (cb) ps.stdout.on('data', function(data) {
@@ -113,6 +113,25 @@ test('should not restart the server for ignore pattern modules', function(t) {
       }
     }
   })
+})
+
+test('read config from current folder if there is no config file in the script folder', function(t) {
+  ps = spawn('../server.js', function(out) {
+    if (out.match(/touch message.js/)) {
+      setTimeout(touchFile(ignoredPatternFile), 500)
+      var successTimeoutId = setTimeout(function () {
+        ps.removeAllListeners('exit')
+        ps.kill()
+
+        t.end()
+      }, 1000);
+      return function(out) {
+        clearTimeout(successTimeoutId)
+        t.fail('server restarted unexpectedly')
+        return { exit: t.end.bind(t) }
+      }
+    }
+  },dir+'/setting/config')
 })
 
 test('should restart the cluster', function(t) {
