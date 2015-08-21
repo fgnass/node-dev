@@ -216,3 +216,10 @@ test('should allow graceful shutdowns', function(t) {
     }
   })
 })
+
+test('should allow unknown options', function(t) {
+  spawn('es6.js --harmony', function(out) {
+    t.like(out, /foo/)
+    return { exit: t.end.bind(t) }
+  })
+})
