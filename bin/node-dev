@@ -4,21 +4,22 @@ var dev = require('..')
 var program = require('commander')
 var resolveMain = require('../lib/resolveMain')
 
-
 program
   .version(require('../package.json').version)
   .option('--all-deps', 'watch the whole dependency tree')
   .option('--no-deps', 'watch only the project’s own files and linked modules' +
     ' (via `npm link`)')
   .option('--dedupe', 'dedupe modules dynamically')
+  .allowUnknownOption(true)
   .arguments('<script> [arguments...]')
   .action(function (script, scriptArgs) {
     var wrapper = resolveMain(__dirname + '/../lib/wrap.js')
-
+    var execArgv = program.parseOptions(process.argv).unknown;
     dev(wrapper, script, scriptArgs || [], {
       allDeps: program.allDeps || false,
       noDeps: program.noDeps || false,
       dedupe: program.dedupe || false,
+      execArgv: execArgv || []
     })
   })
 
