@@ -10,12 +10,26 @@ function getFirstNonOptionArgIndex(args) {
   return args.length;
 }
 
+function extractRequires(args){
+  var i = 0, extract = []
+  while (i < args.length) {
+    if (args[i] == '-r' || args[i] == '--require'){
+		extract.push(args[i], args[i+1])
+		args.splice(i, 2)
+	} else {
+		i++
+	}	
+  }
+  return extract
+}
+
+var nodeArgs = extractRequires(process.argv)
+
 var scriptIndex = getFirstNonOptionArgIndex(process.argv)
 var script = process.argv[scriptIndex]
 var scriptArgs = process.argv.slice(scriptIndex + 1)
 var devArgs = process.argv.slice(2, scriptIndex)
 
-var nodeArgs = []
 var opts = minimist(devArgs, {
   boolean: ['all-deps', 'deps', 'dedupe', 'poll'],
   default: { deps: true },
