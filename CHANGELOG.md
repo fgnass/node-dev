@@ -1,5 +1,11 @@
 # node-dev
 
+## 3.1.3 / 2016-05-30
+
+- Update docs
+- Fix eslint errors
+- Re-enable test for #134
+
 ## 3.1.2 / 2016-05-28
 
 - Proof against weird `require.extensions`. See #134.
