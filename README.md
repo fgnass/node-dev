@@ -40,6 +40,8 @@ files are watched and what happens when they change:
 * `--respawn` Keep watching for changes after the script has exited
 * `--dedupe` [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
 * `--poll` Force polling for file changes (Caution! CPU-heavy!)
+* `--interval` Polling interval (ms)
+* `--debounce` Debounce file change events (ms, non-polling mode)
 * `--no-notify` Switch off desktop notifications (see below)
 
 By default node-dev will watch all first-level dependencies, i.e. the ones in
