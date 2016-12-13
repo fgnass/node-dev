@@ -246,16 +246,39 @@ test('should set NODE_ENV', function (t) {
 });
 
 test('should allow graceful shutdowns', function (t) {
-  spawn('server.js', function (out) {
-    if (out.match(/touch message.js/)) {
-      setTimeout(touchFile(), 500);
-      return function (out2) {
-        if (out2.match(/exit/)) {
-          return { exit: t.end.bind(t) };
-        }
-      };
-    }
-  });
+  if (process.platform === "win32") {
+    t.pass("should allow graceful shutdowns", {skip: "Signals are not supported on Windows"});
+    t.end();
+  } else {
+    spawn('server.js', function (out) {
+      if (out.match(/touch message.js/)) {
+        setTimeout(touchFile(), 500);
+        return function (out2) {
+          if (out2.match(/exit/)) {
+            return { exit: t.end.bind(t) };
+          }
+        };
+      }
+    });
+  }
+});
+
+test('should send IPC shutdown on Windows', function (t) {
+  if (process.platform !== "win32") {
+    t.pass("should send IPC shutdown on Windows", {skip: "IPC not needed on non-Windows"});
+    t.end();
+  } else {
+    spawn('--graceful_ipc=node-dev_restart win_server.js', function (out) {
+      if (out.match(/touch message.js/)) {
+        setTimeout(touchFile(), 500);
+        return function (out2) {
+          if (out2.match(/win restart IPC received/)) {
+            return { exit: t.end.bind(t) };
+          }
+        };
+      }
+    });
+  }
 });
 
 test('should be resistant to breaking `require.extensions`', function (t) {
