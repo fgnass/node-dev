@@ -27,7 +27,7 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tap -t 120 test/*.js"
   },
   "dependencies": {
     "dateformat": "~1.0.4-1.2.3",

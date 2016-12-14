@@ -39,6 +39,7 @@ files are watched and what happens when they change:
 * `--all-deps` Watch the whole dependency tree
 * `--respawn` Keep watching for changes after the script has exited
 * `--dedupe` [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
+* `--delay=<seconds>` Delay restarting by seconds to allow multiple changes to queue.
 * `--poll` Force polling for file changes (Caution! CPU-heavy!)
 * `--no-notify` Switch off desktop notifications (see below)
 
@@ -82,6 +83,7 @@ options you can set to tweak its behaviour:
 * `fork` – Whether to hook into [child_process.fork](http://nodejs.org/docs/latest/api/child_process.html#child_process_child_process_fork_modulepath_args_options) (required for [clustered](http://nodejs.org/docs/latest/api/cluster.html) programs). _Default:_ `true`
 * `deps` – How many levels of dependencies should be watched. _Default:_ `1`
 * `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
+* `delay` - Delays the restarting of the script for the configured amount of seconds.  _Default:_ 0
 
 Upon startup node-dev looks for a `.node-dev.json` file in the user's HOME
 directory. It will also look for a `.node-dev.json` file in the same directory
@@ -143,6 +145,13 @@ Node-dev sends a `SIGTERM` signal to the child-process if a restart is required.
 If your app is not listening for these signals `process.exit(0)` will be called
 immediately. If a listener is registered, node-dev assumes that your app will
 exit on its own once it is ready.
+
+### Restart Delay
+
+For the instances where a transpiler might make changes the multiple files in
+rapid succession, a delay can be configured.  If any new changes are detected
+during the delay, the delay will be reset.   The restart will occur when no changes
+happen during `cfg.delay` seconds.
 
 ### Ignore paths
 
