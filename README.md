@@ -39,6 +39,7 @@ files are watched and what happens when they change:
 * `--all-deps` Watch the whole dependency tree
 * `--respawn` Keep watching for changes after the script has exited
 * `--dedupe` [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
+* `--graceful_ipc <msg>` Send 'msg' as an IPC message instead of SIGTERM for restart/shutdown
 * `--poll` Force polling for file changes (Caution! CPU-heavy!)
 * `--no-notify` Switch off desktop notifications (see below)
 
@@ -82,10 +83,14 @@ options you can set to tweak its behaviour:
 * `fork` – Whether to hook into [child_process.fork](http://nodejs.org/docs/latest/api/child_process.html#child_process_child_process_fork_modulepath_args_options) (required for [clustered](http://nodejs.org/docs/latest/api/cluster.html) programs). _Default:_ `true`
 * `deps` – How many levels of dependencies should be watched. _Default:_ `1`
 * `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
+* `graceful_ipc` - Send the argument provided as an IPC message instead of SIGTERM during restart events.  _Default:_ `""` (off)
 
-Upon startup node-dev looks for a `.node-dev.json` file in the user's HOME
-directory. It will also look for a `.node-dev.json` file in the same directory
-as the script to be run, which (if present) overwrites the per-user settings.
+Upon startup node-dev looks for a `.node-dev.json` file in the following directories:
+* user's HOME directory
+* the current working directory (as provided by process.cwd())
+* the same directory as the script to be run
+
+Settings found later in the list will overwrite previous options.
 
 ### Dedupe linked modules
 
@@ -143,6 +148,22 @@ Node-dev sends a `SIGTERM` signal to the child-process if a restart is required.
 If your app is not listening for these signals `process.exit(0)` will be called
 immediately. If a listener is registered, node-dev assumes that your app will
 exit on its own once it is ready.
+
+Windows does not handle POSIX signals, as such signals such as `SIGTERM` cause
+the process manager to unconditionally terminate the application with no chance
+of cleanup.  In this case, the option `graceful_ipc` may be used.  If this option
+is defined, the argument provided to the option will be sent as an IPC message
+via `child.send("<graceful_ipc argument>")`.  The child process can listen and
+handle this event with:
+
+```javascript
+process.on("message", function (msg) {
+  if (msg === "<graceful_ipc argument") {
+    // Gracefully shut down here
+    doGracefulShutdown();
+  }
+});
+```
 
 ### Ignore paths
 
