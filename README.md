@@ -131,7 +131,7 @@ Options can be passed to a transpiler by providing an object containing
 ```json
     {
         "js": {
-            "name": "babel/register",
+            "name": "babel-core/register",
             "options": {
                 "only": [
                     "lib/**",
