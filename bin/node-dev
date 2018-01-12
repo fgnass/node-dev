@@ -23,7 +23,7 @@ function removeValueArgs(args, names) {
   return removed;
 }
 
-var nodeArgs = removeValueArgs(process.argv, ['-r', '--require']);
+var nodeArgs = removeValueArgs(process.argv, ['-r', '--require', '--trace-warnings']);
 
 var scriptIndex = getFirstNonOptionArgIndex(process.argv);
 var script = process.argv[scriptIndex];
