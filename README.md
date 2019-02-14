@@ -41,6 +41,8 @@ files are watched and what happens when they change:
 * `--dedupe` [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
 * `--graceful_ipc <msg>` Send 'msg' as an IPC message instead of SIGTERM for restart/shutdown
 * `--poll` Force polling for file changes (Caution! CPU-heavy!)
+* `--interval` Polling interval (ms)
+* `--debounce` Debounce file change events (ms, non-polling mode)
 * `--no-notify` Switch off desktop notifications (see below)
 
 By default node-dev will watch all first-level dependencies, i.e. the ones in

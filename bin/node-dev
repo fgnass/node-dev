@@ -32,7 +32,7 @@ var devArgs = process.argv.slice(2, scriptIndex);
 
 var opts = minimist(devArgs, {
   boolean: ['all-deps', 'deps', 'dedupe', 'poll', 'respawn', 'notify'],
-  string:  ['graceful_ipc'],
+  string:  ['graceful_ipc', 'interval', 'debounce'],
   default: { deps: true, notify: true, graceful_ipc: "" },
   unknown: function (arg) {
     nodeArgs.push(arg);
