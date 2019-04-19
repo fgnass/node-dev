@@ -4,7 +4,7 @@
     "./ignoredModule.js"
   ],
   "extensions": {
-    "coffee": "coffee-script/register",
+    "coffee": "coffeescript/register",
     "js": {
       "name": "./extension",
       "options": {
