@@ -1,5 +1,19 @@
 # node-dev
 
+## 4.0.0 / 2019-04-22
+
+- Update dependencies:
+  - dynamic-dedupe: from v0.2.0 to v0.3.0
+  - node-notifier: from v4.0.2 to v5.4.0
+- Update devDependencies:
+  - From coffee-script v1.8.0 to coffeescript v2.4.1
+- Add option 'graceful_ipc' for windows children
+- Read config from CWD as well as script dir
+- Ignore package-lock.json for git and npm
+- TravisCI: Test node v6 - 11, stop testing node v5
+- Update README for how babel is now packages
+- Specify minimum node version as >=6
+
 ## 3.1.3 / 2016-05-30
 
 - Update docs
