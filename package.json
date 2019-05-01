@@ -27,6 +27,7 @@
     "node": ">=6"
   },
   "scripts": {
+    "lint": "eslint lib test",
     "test": "tap test/*.js"
   },
   "dependencies": {

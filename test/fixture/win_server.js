@@ -16,8 +16,8 @@ server.on('listening', function () {
 .listen(0);
 
 process.on('message', function (data) {
-  if (data === "node-dev_restart") {
-    console.log("win_server.js - win restart IPC received");
+  if (data === 'node-dev_restart') {
+    console.log('win_server.js - win restart IPC received');
     server.close();
   }
 });

@@ -1,7 +1,11 @@
-sudo: false
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
 language: node_js
 node_js:
-  - 6
-  - 8
+  - 12
   - 10
-  - 11
+  - 8
+  - 6
+sudo: false
