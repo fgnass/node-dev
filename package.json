@@ -30,7 +30,7 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "dateformat": "~1.0.4-1.2.3",
+    "dateformat": "^3.0.3",
     "dynamic-dedupe": "^0.3.0",
     "filewatcher": "~3.0.0",
     "minimist": "^1.1.3",

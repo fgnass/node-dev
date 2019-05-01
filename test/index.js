@@ -1,5 +1,5 @@
 var child = require('child_process');
-var test = require('tap').test;
+var tap = require('tap');
 var touch = require('touch');
 
 var dir = __dirname + '/fixture';
@@ -65,18 +65,18 @@ function run(cmd, done) {
 
 // Tests
 
-test('should pass unknown args to node binary', function (t) {
+tap.test('should pass unknown args to node binary', function (t) {
   spawn('--expose_gc gc.js foo', function (out) {
     t.is(out.trim(), 'foo function');
     return { exit: t.end.bind(t) };
   });
 });
 
-test('should restart the server', function (t) {
+tap.test('should restart the server', function (t) {
   run('server.js', t.end.bind(t));
 });
 
-test('should restart the server twice', function (t) {
+tap.test('should restart the server twice', function (t) {
   spawn('server.js', function (out) {
     if (out.match(/touch message.js/)) {
       setTimeout(touchFile(), 500);
@@ -94,64 +94,23 @@ test('should restart the server twice', function (t) {
   });
 });
 
-/*
-test('should not restart the server for ignored modules', function (t) {
-  var ps = spawn('server.js', function (out) {
-    if (out.match(/touch message.js/)) {
-      setTimeout(touchFile(ignoredFile), 500);
-
-      var successTimeoutId = setTimeout(function () {
-        ps.removeAllListeners('exit');
-        ps.kill();
-
-        t.end();
-      }, 1000);
-
-      return function () {
-        clearTimeout(successTimeoutId);
-        t.fail('server restarted unexpectedly');
-
-        return { exit: t.end.bind(t) };
-      };
-    }
-  });
-});
-*/
-
-test('should restart the cluster', function (t) {
+tap.test('should restart the cluster', function (t) {
   run('cluster.js', t.end.bind(t));
 });
 
-test('should support vm functions', function (t) {
+tap.test('should support vm functions', function (t) {
   run('vmtest.js', t.end.bind(t));
 });
 
-test('should support vm functions with missing file argument', function (t) {
+tap.test('should support vm functions with missing file argument', function (t) {
   run('vmtest.js nofile', t.end.bind(t));
 });
 
-test('should support coffeescript', function (t) {
+tap.test('should support coffeescript', function (t) {
   run('server.coffee', t.end.bind(t));
 });
 
-/*
-test('should restart when a file is renamed', function (t) {
-  var tmp = dir + '/message.tmp';
-  fs.writeFileSync(tmp, MESSAGE);
-  spawn('log.js', function (out) {
-    if (out.match(/touch message.js/)) {
-      fs.renameSync(tmp, msgFile);
-      return function (out2) {
-        if (out2.match(/Restarting/)) {
-          return { exit: t.end.bind(t) };
-        }
-      };
-    }
-  });
-});
-*/
-
-test('should handle errors', function (t) {
+tap.test('should handle errors', function (t) {
   spawn('error.js', function (out) {
     if (out.match(/ERROR/)) {
       setTimeout(touchFile(), 500);
@@ -164,14 +123,14 @@ test('should handle errors', function (t) {
   });
 });
 
-test('should watch if no such module', function (t) {
+tap.test('should watch if no such module', function (t) {
   spawn('noSuchModule.js', function (out) {
     t.like(out, /ERROR/);
     return { exit: t.end.bind(t) };
   });
 });
 
-test('should run async code un uncaughtException handlers', function (t) {
+tap.test('should run async code un uncaughtException handlers', function (t) {
   spawn('uncaughtExceptionHandler.js', function (out) {
     if (out.match(/ERROR/)) {
       return function (out2) {
@@ -183,14 +142,14 @@ test('should run async code un uncaughtException handlers', function (t) {
   });
 });
 
-test('should ignore caught errors', function (t) {
+tap.test('should ignore caught errors', function (t) {
   spawn('catchNoSuchModule.js', function (out) {
     t.like(out, /Caught/);
     return { exit: t.end.bind(t) };
   });
 });
 
-test('should not show up in argv', function (t) {
+tap.test('should not show up in argv', function (t) {
   spawn('argv.js foo', function (out) {
     var argv = JSON.parse(out.replace(/'/g, '"'));
     t.like(argv[0], /.*?node(js|\.exe)?$/);
@@ -200,14 +159,14 @@ test('should not show up in argv', function (t) {
   });
 });
 
-test('should pass through the exit code', function (t) {
+tap.test('should pass through the exit code', function (t) {
   spawn('exit.js').on('exit', function (code) {
     t.is(code, 101);
     t.end();
   });
 });
 
-test('should conceal the wrapper', function (t) {
+tap.test('should conceal the wrapper', function (t) {
   // require.main should be main.js not wrap.js!
   spawn('main.js').on('exit', function (code) {
     t.is(code, 0);
@@ -215,14 +174,14 @@ test('should conceal the wrapper', function (t) {
   });
 });
 
-test('should relay stdin', function (t) {
+tap.test('should relay stdin', function (t) {
   spawn('echo.js', function (out) {
     t.is(out, 'foo');
     return { exit: t.end.bind(t) };
   }).stdin.write('foo');
 });
 
-test('should kill the forked processes', function (t) {
+tap.test('should kill the forked processes', function (t) {
   spawn('pid.js', function (out) {
     var pid = parseInt(out, 10);
     return { exit: function () {
@@ -238,14 +197,14 @@ test('should kill the forked processes', function (t) {
   });
 });
 
-test('should set NODE_ENV', function (t) {
+tap.test('should set NODE_ENV', function (t) {
   spawn('env.js', function (out) {
     t.like(out, /development/);
     return { exit: t.end.bind(t) };
   });
 });
 
-test('should allow graceful shutdowns', function (t) {
+tap.test('should allow graceful shutdowns', function (t) {
   if (process.platform === "win32") {
     t.pass("should allow graceful shutdowns", {skip: "Signals are not supported on Windows"});
     t.end();
@@ -263,7 +222,7 @@ test('should allow graceful shutdowns', function (t) {
   }
 });
 
-test('should send IPC shutdown on Windows', function (t) {
+tap.test('should send IPC shutdown on Windows', function (t) {
   if (process.platform !== "win32") {
     t.pass("should send IPC shutdown on Windows", {skip: "IPC not needed on non-Windows"});
     t.end();
@@ -281,9 +240,21 @@ test('should send IPC shutdown on Windows', function (t) {
   }
 });
 
-test('should be resistant to breaking `require.extensions`', function (t) {
+tap.test('should be resistant to breaking `require.extensions`', function (t) {
   spawn('modify-extensions.js', function (out) {
     t.notOk(/TypeError/.test(out));
   });
   setTimeout(t.end.bind(t), 500);
+});
+
+tap.test("Logs timestamp by default", function (t) {
+  spawn("server.js", function (out) {
+    if (out.match(/touch message.js/)) {
+      setTimeout(touchFile(), 500);
+      return function (out2) {
+        t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+        return { exit: t.end.bind(t) };
+      }
+    }
+  });
 });
