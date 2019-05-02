@@ -1,4 +1,5 @@
 .DS_Store
+.nyc_output
 .vagrant
 node_modules
 npm-debug.log

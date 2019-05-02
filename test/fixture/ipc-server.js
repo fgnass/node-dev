@@ -24,3 +24,7 @@ process.on('message', function (data) {
 process.on('exit', function () {
   console.log('exit');
 });
+
+process.on('SIGTERM', function () {
+  server.close();
+});
