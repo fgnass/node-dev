@@ -24,7 +24,7 @@
   "main": "./lib",
   "preferGlobal": true,
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "lint": "eslint lib test",
