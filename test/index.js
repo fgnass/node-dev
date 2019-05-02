@@ -19,34 +19,31 @@ function spawn(cmd, cb) {
   var out = '';
   var err = '';
 
-  if (cb) {
+  // capture stderr
+  ps.stderr.on('data', function (data) {
+    err += data.toString();
+  });
 
-    // capture stderr
-    ps.stderr.on('data', function (data) {
-      err += data.toString();
-    });
+  // invoke callback
+  ps.on('exit', function (code, signal) {
+    if (err) cb(err, code, signal);
+  });
 
-    // invoke callback
-    ps.on('exit', function (code, signal) {
-      if (err) cb(err, code, signal);
-    });
-
-    ps.stdout.on('data', function (data) {
-      out += data.toString();
-      var ret = cb.call(ps, out);
-      if (typeof ret == 'function') {
-        // use the returned function as new callback
-        cb = ret;
-      } else if (ret && ret.exit) {
-        // kill the process and invoke the given function
-        ps.stdout.removeAllListeners('data');
-        ps.stderr.removeAllListeners('data');
-        ps.removeAllListeners('exit');
-        ps.on('exit', function () { setTimeout(ret.exit, 1000); });
-        ps.kill();
-      }
-    });
-  }
+  ps.stdout.on('data', function (data) {
+    out += data.toString();
+    var ret = cb.call(ps, out);
+    if (typeof ret == 'function') {
+      // use the returned function as new callback
+      cb = ret;
+    } else if (ret && ret.exit) {
+      // kill the process and invoke the given function
+      ps.stdout.removeAllListeners('data');
+      ps.stderr.removeAllListeners('data');
+      ps.removeAllListeners('exit');
+      ps.on('exit', function () { setTimeout(ret.exit, 1000); });
+      ps.kill();
+    }
+  });
 
   return ps;
 }
@@ -247,7 +244,7 @@ tap.test('should be resistant to breaking `require.extensions`', function (t) {
 
 tap.test('Logs timestamp by default', function (t) {
   spawn('server.js', function (out) {
-    if (out.match(/touch message.js/)) {
+    if (out.match(/touch message\.js/g)) {
       setTimeout(touchFile(), 500);
       return function (out2) {
         t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
