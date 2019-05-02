@@ -3,8 +3,7 @@ var http = require('http');
 var message = require('./message');
 
 // Changes to this module should not cause a server restart:
-/* eslint-disable no-unused-vars */
-var ignoredModule = require('./ignoredModule');
+require('./ignoredModule');
 
 var server = http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -16,8 +15,7 @@ server.on('listening', function () {
   var addr = this.address();
   console.log('Server listening on %s:%s', addr.address, addr.port);
   console.log(message);
-})
-.listen(0);
+}).listen(0);
 
 process.on('SIGTERM', function () {
   server.close();

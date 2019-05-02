@@ -8,7 +8,7 @@ function createWorker() {
 }
 
 if (cluster.isMaster) {
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 2; i += 1) {
     console.log('Forking worker', i);
     createWorker();
   }

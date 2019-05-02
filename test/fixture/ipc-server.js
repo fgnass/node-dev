@@ -12,12 +12,11 @@ server.on('listening', function () {
   var addr = this.address();
   console.log('Server listening on %s:%s', addr.address, addr.port);
   console.log(message);
-})
-.listen(0);
+}).listen(0);
 
 process.on('message', function (data) {
-  if (data === 'node-dev_restart') {
-    console.log('win_server.js - win restart IPC received');
+  if (data === 'node-dev:restart') {
+    console.log('ipc-server.js - IPC received');
     server.close();
   }
 });

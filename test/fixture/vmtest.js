@@ -1,6 +1,7 @@
-var vm = require('vm');
 var fs = require('fs');
-var file = __dirname + '/log.js';
+var path = require('path');
+var vm = require('vm');
+var file = path.join(__dirname, 'log.js');
 var str = fs.readFileSync(file, 'utf8');
 
 if (process.argv.length > 2 && process.argv[2] === 'nofile') {
