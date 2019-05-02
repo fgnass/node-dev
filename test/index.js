@@ -1,10 +1,11 @@
 var child = require('child_process');
+var path = require('path');
 var tap = require('tap');
 var touch = require('touch');
 
-var dir = __dirname + '/fixture';
-var bin = __dirname + '/../bin/node-dev';
-var msgFile = dir + '/message.js';
+var dir = path.join(__dirname, 'fixture');
+var bin = path.join(__dirname, '..', 'bin', 'node-dev');
+var msgFile = path.join(dir, 'message.js');
 
 // Helpers
 function touchFile(file) {
@@ -184,16 +185,18 @@ tap.test('should relay stdin', function (t) {
 tap.test('should kill the forked processes', function (t) {
   spawn('pid.js', function (out) {
     var pid = parseInt(out, 10);
-    return { exit: function () {
-      setTimeout(function () {
-        try {
-          process.kill(pid);
-          t.fail('child must no longer run');
-        } catch (e) {
-          t.end();
-        }
-      }, 500);
-    } };
+    return {
+      exit: function () {
+        setTimeout(function () {
+          try {
+            process.kill(pid);
+            t.fail('child must no longer run');
+          } catch (e) {
+            t.end();
+          }
+        }, 500);
+      }
+    };
   });
 });
 
@@ -222,22 +225,17 @@ tap.test('should allow graceful shutdowns', function (t) {
   }
 });
 
-tap.test('should send IPC shutdown on Windows', function (t) {
-  if (process.platform !== 'win32') {
-    t.pass('should send IPC shutdown on Windows', { skip: 'IPC not needed on non-Windows' });
-    t.end();
-  } else {
-    spawn('--graceful_ipc=node-dev_restart win_server.js', function (out) {
-      if (out.match(/touch message.js/)) {
-        setTimeout(touchFile(), 500);
-        return function (out2) {
-          if (out2.match(/win restart IPC received/)) {
-            return { exit: t.end.bind(t) };
-          }
-        };
-      }
-    });
-  }
+tap.test('should send IPC message when configured', function (t) {
+  spawn('--graceful_ipc=node-dev:restart ipc-server.js', function (out) {
+    if (out.match(/touch message.js/)) {
+      setTimeout(touchFile(), 500);
+      return function (out2) {
+        if (out2.match(/IPC received/)) {
+          return { exit: t.end.bind(t) };
+        }
+      };
+    }
+  });
 });
 
 tap.test('should be resistant to breaking `require.extensions`', function (t) {
