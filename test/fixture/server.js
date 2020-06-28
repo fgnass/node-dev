@@ -1,4 +1,3 @@
-
 var http = require('http');
 var message = require('./message');
 
@@ -11,19 +10,20 @@ var server = http.createServer(function (req, res) {
   res.end('\n');
 });
 
-server.on('listening', function () {
+server.once('listening', function () {
   var addr = this.address();
   console.log('Server listening on %s:%s', addr.address, addr.port);
   console.log(message);
 }).listen(0);
 
-process.on('SIGTERM', function () {
-  server.close();
-  setTimeout(function () { console.log('3'); }, 200);
-  setTimeout(function () { console.log('2'); }, 400);
-  setTimeout(function () { console.log('1'); }, 600);
+process.once('SIGTERM', function () {
+  if (server.listening) {
+    server.close();
+  }
 });
 
-process.on('exit', function () {
+process.once('exit', function() {
   console.log('exit');
 });
+
+module.exports = server;

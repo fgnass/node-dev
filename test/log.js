@@ -1,6 +1,9 @@
 var tap = require('tap');
 
 var cfg = require('../lib/cfg.js')();
+
+cfg.noColor = true;
+
 var logFactory = require('../lib/log.js');
 var log = logFactory(cfg);
 
