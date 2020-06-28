@@ -8,9 +8,11 @@ server = http.createServer (req, res) ->
     res.write message
     res.end '\n'
 
-server.listen 8080
+server.once 'listening', ->
+  addr = this.address()
+  console.log 'Server listening on %s:%s', addr.address, addr.port
+  console.log message
+.listen 0
 
-console.log 'Server running at http://localhost:8080/'
-console.log message
-
-process.on 'SIGTERM', -> server.close()
+process.once 'SIGTERM', -> server.close()
+process.once 'exit', -> console.log 'exit'
