@@ -27,7 +27,6 @@ function spawn(cmd, cb) {
       // kill the process and invoke the given function
       ps.removeListener('exit', exitHandler);
       ps.once('exit', function (code) {
-        console.log(`Process is exiting with code: ${code}`);
         ps.stdout.removeListener('data', outHandler);
         ps.stderr.removeListener('data', errorHandler);
         ret.exit(code);
