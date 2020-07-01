@@ -22,7 +22,7 @@ process.once('SIGTERM', function () {
   }
 });
 
-process.once('beforeExit', function() {
+process.once('beforeExit', function () {
   console.log('exit');
 });
 
