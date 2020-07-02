@@ -117,9 +117,9 @@ tap.test('should kill the forked processes', function (t) {
   });
 });
 
-tap.test('should set NODE_ENV', function (t) {
+tap.test('should *not* set NODE_ENV', function (t) {
   spawn('env.js', function (out) {
-    t.like(out, /development/);
+    t.notLike(out, /development/);
     return { exit: t.end.bind(t) };
   });
 });
