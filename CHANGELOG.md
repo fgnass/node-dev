@@ -1,5 +1,21 @@
 # node-dev
 
+## 4.1.0 / 2020-07-02
+
+- Update devDependencies:
+  - `eslint`: from `v2.0.0` to `v7.3.1`
+  - `eslint-config-airbnb-base`: from `v3.0.1` to `v14.2.0`
+  - `eslint-plugin-import`: from v`1.8.1` to `v2.22.0`
+  - `tap`: from `v12.6.2` to `v14.10.7`
+  - `touch`: from `v1.0.0` to `v3.1.0`
+- Removed windows restriction for `graceful_ipc`
+- No longer attempts to send `SIGTERM` to disconnected child processes
+- [package.json] Set minimum node version to 10
+- [package.json] Changed test script to be more cross-platform
+- [tests] Split tests into 3 separate files
+- [tests] Removed a few opportunities for race conditions to occur
+- [tests] Some filesystems have single second precision, so tests now wait a minimum of 1 second before touching a file
+
 ## 4.0.0 / 2019-04-22
 
 - Update dependencies:

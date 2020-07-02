@@ -1,6 +1,6 @@
 {
   "name": "node-dev",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Restarts your app when files are modified",
   "keywords": [
     "restart",
@@ -11,7 +11,8 @@
   ],
   "author": "Felix Gnass",
   "contributors": [
-    "Daniel Gasienica <daniel@gasienica.ch> (https://github.com/gasi/)"
+    "Daniel Gasienica <daniel@gasienica.ch> (https://github.com/gasi)",
+    "Bjorn Stromberg <bjorn@bjornstar.com> (https://bjornstar.com)"
   ],
   "repository": {
     "type": "git",
