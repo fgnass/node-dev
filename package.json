@@ -28,7 +28,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "lint": "eslint lib test",
+    "lint": "eslint lib test bin/node-dev",
     "test": "node test"
   },
   "dependencies": {
