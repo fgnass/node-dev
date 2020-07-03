@@ -1,10 +1,18 @@
 # node-dev
 
-## 4.2.0 / 2020-07-03
+## v4.3.0 / 2020-07-03
+
+- Enable `--notify` by default and add tests
+- Disable by passing `--notify=false`
+- Move cli code out of bin
+- Start testing cli interface
+- Add bin to lint
+
+## v4.2.0 / 2020-07-03
 
 - No longer sets NODE_ENV to `development`
 
-## 4.1.0 / 2020-07-02
+## v4.1.0 / 2020-07-02
 
 - Update devDependencies:
   - `eslint`: from `v2.0.0` to `v7.3.1`
@@ -20,7 +28,7 @@
 - [tests] Removed a few opportunities for race conditions to occur
 - [tests] Some filesystems have single second precision, so tests now wait a minimum of 1 second before touching a file
 
-## 4.0.0 / 2019-04-22
+## v4.0.0 / 2019-04-22
 
 - Update dependencies:
   - dynamic-dedupe: from v0.2.0 to v0.3.0
@@ -34,28 +42,28 @@
 - Update README for how babel is now packages
 - Specify minimum node version as >=6
 
-## 3.1.3 / 2016-05-30
+## v3.1.3 / 2016-05-30
 
 - Update docs
 - Fix eslint errors
 - Re-enable test for #134
 
-## 3.1.2 / 2016-05-28
+## v3.1.2 / 2016-05-28
 
 - Proof against weird `require.extensions`. See #134.
 - Ensure method patching works when filename arguments are missing. See #135.
 
-## 3.1.1 / 2016-05-02
+## v3.1.1 / 2016-05-02
 
 - Enable `--notify` by default again. See #125.
 - Support filename option passed to VM methods. Fixes #130.
 
-## 3.1.0 / 2016-02-22
+## v3.1.0 / 2016-02-22
 
 - Add `--no-notify` to disable desktop notifications. See #120.
 - Fix `--no-deps` option. See #119.
 
-## 3.0.0 / 2016-01-29
+## v3.0.0 / 2016-01-29
 
 - Add `--respawn` to keep watching after a process exits. See #104.
 - Don't terminate the child process if a custom `uncaughtException` handler is registered. See #113.
@@ -65,13 +73,13 @@
 - Switch to airbnb code style
 - Use greenkeeper.io to keep dependencies up to date
 
-## 2.7.1 / 2015-08-21
+## v2.7.1 / 2015-08-21
 
 - Add `--poll` to fix #87
 - Switch from [`commander`][npm-commander] to [`minimist`][npm-minimist]
 - Fix issues introduced in 2.7.0. See #102 for details.
 
-## 2.7.0 / 2015-08-17
+## v2.7.0 / 2015-08-17
 
 - Support ignoring file paths, e.g. for universal (isomorphic) apps. See
   [`README`][README-ignore-paths] for more details.
