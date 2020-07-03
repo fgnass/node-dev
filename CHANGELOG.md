@@ -1,5 +1,9 @@
 # node-dev
 
+## 4.2.0 / 2020-07-03
+
+- No longer sets NODE_ENV to `development`
+
 ## 4.1.0 / 2020-07-02
 
 - Update devDependencies:
@@ -54,13 +58,12 @@
 ## 3.0.0 / 2016-01-29
 
 - Add `--respawn` to keep watching after a process exits. See #104.
-- Don't terminate the child process if a custom `unchaughtException` handler is registered. See #113.
+- Don't terminate the child process if a custom `uncaughtException` handler is registered. See #113.
 - Handle `-r` and `--require` node options correctly. See #111.
 - Add support for passing options to transpilers. See #109.
 - Handle `--no-deps` correctly. See #108.
 - Switch to airbnb code style
 - Use greenkeeper.io to keep dependencies up to date
-
 
 ## 2.7.1 / 2015-08-21
 
@@ -76,7 +79,6 @@
 - Extract [`LICENSE`][LICENSE] file.
 - Upgrade [`tap`][npm-tap] module to 1.3.2.
 - Use [`touch`][npm-touch] module instead of custom code.
-
 
 [LICENSE]: LICENSE
 [npm-commander]: https://www.npmjs.com/package/commander
