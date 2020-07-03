@@ -41,7 +41,6 @@ files are watched and what happens when they change:
 * `--dedupe` [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
 * `--graceful_ipc <msg>` Send 'msg' as an IPC message instead of SIGTERM for restart/shutdown
 * `--poll` Force polling for file changes (Caution! CPU-heavy!)
-* `--no-notify` Switch off desktop notifications (see below)
 
 By default node-dev will watch all first-level dependencies, i.e. the ones in
 the project's `node_modules`folder.
@@ -83,7 +82,7 @@ options you can set to tweak its behaviour:
 * `fork` – Whether to hook into [child_process.fork](http://nodejs.org/docs/latest/api/child_process.html#child_process_child_process_fork_modulepath_args_options) (required for [clustered](http://nodejs.org/docs/latest/api/cluster.html) programs). _Default:_ `true`
 * `deps` – How many levels of dependencies should be watched. _Default:_ `1`
 * `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
-* `graceful_ipc` - Send the argument provided as an IPC message instead of SIGTERM during restart events.  _Default:_ `""` (off)
+* `graceful_ipc` - Send the argument provided as an IPC message instead of SIGTERM during restart events. _Default:_ `""` (off)
 
 Upon startup node-dev looks for a `.node-dev.json` file in the following directories:
 * user's HOME directory
@@ -151,9 +150,9 @@ exit on its own once it is ready.
 
 Windows does not handle POSIX signals, as such signals such as `SIGTERM` cause
 the process manager to unconditionally terminate the application with no chance
-of cleanup.  In this case, the option `graceful_ipc` may be used.  If this option
+of cleanup. In this case, the option `graceful_ipc` may be used. If this option
 is defined, the argument provided to the option will be sent as an IPC message
-via `child.send("<graceful_ipc argument>")`.  The child process can listen and
+via `child.send("<graceful_ipc argument>")`. The child process can listen and
 handle this event with:
 
 ```javascript
