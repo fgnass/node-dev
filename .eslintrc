@@ -5,6 +5,9 @@
   "extends": [
     "airbnb-base/legacy"
   ],
+  "parserOptions": {
+    "ecmaVersion": 9
+  },
   "rules": {
     "comma-dangle": [2, "never"],
     "consistent-return": 0,

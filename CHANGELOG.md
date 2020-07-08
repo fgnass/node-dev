@@ -1,5 +1,15 @@
 # node-dev
 
+## v5.0.0 / 2020-07-08
+
+- Remove `--all-deps` and `--no-deps` CLI options, use `--deps=-1` or `--deps=0` respectively
+- Unify `cli` and `cfg` logic to ensure CLI always overrides config files
+- Load order for config files now matches what is in the `README`
+- Add tests for notify, CLI should override config files
+- All config now have clear default values
+- Use more ES6 code
+- Rename `resolveMain.js` to `resolve-main.js`
+
 ## v4.3.0 / 2020-07-03
 
 - Enable `--notify` by default and add tests

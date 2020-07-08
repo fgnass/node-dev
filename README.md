@@ -35,12 +35,20 @@ node-dev foo.js
 There are a couple of command line options that can be used to control which
 files are watched and what happens when they change:
 
-* `--no-deps` Watch only the project's own files and linked modules (via `npm link`)
-* `--all-deps` Watch the whole dependency tree
-* `--respawn` Keep watching for changes after the script has exited
-* `--dedupe` [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
-* `--graceful_ipc <msg>` Send 'msg' as an IPC message instead of SIGTERM for restart/shutdown
-* `--poll` Force polling for file changes (Caution! CPU-heavy!)
+* `--clear` - Clear the screen on restart
+* `--dedupe` - [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
+* `--deps`:
+  * -1 - Watch the whole dependency tree
+  * 0 - Watch only the project's own files and linked modules (via `npm link`)
+  * 1 (_Default_) - Watch all first level dependencies
+* `--fork` - Hook into child_process.fork
+* `--graceful_ipc <msg>` - Send 'msg' as an IPC message instead of SIGTERM for restart/shutdown
+* `--ignore` - A file whose changes should not cause a restart
+* `--notify` - Display desktop notifications
+* `--poll` - Force polling for file changes (Caution! CPU-heavy!)
+* `--respawn` - Keep watching for changes after the script has exited
+* `--timestamp` - The timestamp format to use for logging restarts
+* `--vm` - Load files using Node's VM
 
 By default node-dev will watch all first-level dependencies, i.e. the ones in
 the project's `node_modules`folder.
@@ -76,13 +84,16 @@ Usually node-dev doesn't require any configuration at all, but there are some
 options you can set to tweak its behaviour:
 
 * `clear` – Whether to clear the screen upon restarts. _Default:_ `false`
+* `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
+* `deps` – How many levels of dependencies should be watched. _Default:_ `1`
+* `fork` – Whether to hook into [child_process.fork](http://nodejs.org/docs/latest/api/child_process.html#child_process_child_process_fork_modulepath_args_options) (required for [clustered](http://nodejs.org/docs/latest/api/cluster.html) programs). _Default:_ `true`
+* `graceful_ipc` - Send the argument provided as an IPC message instead of SIGTERM during restart events. _Default:_ `""` (off)
+* `ignore` - A single file or an array of files to ignore. _Default:_ `[]`
 * `notify` – Whether to display desktop notifications. _Default:_ `true`
+* `poll` - Force polling for file changes, this can be CPU-heavy. _Default:_ `false`
+* `respawn` - Keep watching for changes after the script has exited. _Default:_ `false`
 * `timestamp` – The timestamp format to use for logging restarts. _Default:_ `"HH:MM:ss"`
 * `vm` – Whether to watch files loaded via Node's [VM](http://nodejs.org/docs/latest/api/vm.html) module. _Default:_ `true`
-* `fork` – Whether to hook into [child_process.fork](http://nodejs.org/docs/latest/api/child_process.html#child_process_child_process_fork_modulepath_args_options) (required for [clustered](http://nodejs.org/docs/latest/api/cluster.html) programs). _Default:_ `true`
-* `deps` – How many levels of dependencies should be watched. _Default:_ `1`
-* `dedupe` – Whether modules should by [dynamically deduped](https://www.npmjs.org/package/dynamic-dedupe). _Default:_ `false`
-* `graceful_ipc` - Send the argument provided as an IPC message instead of SIGTERM during restart events. _Default:_ `""` (off)
 
 Upon startup node-dev looks for a `.node-dev.json` file in the following directories:
 * user's HOME directory

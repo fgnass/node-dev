@@ -1,34 +1,36 @@
-var tap = require('tap');
+const tap = require('tap');
 
-var cfg = require('../lib/cfg.js')();
+const { defaultConfig } = require('../lib/cfg');
+const logFactory = require('../lib/log');
 
-cfg.noColor = true;
-
-var logFactory = require('../lib/log.js');
-var log = logFactory(cfg);
+const noColorCfg = { ...defaultConfig, noColor: true };
 
 tap.test('log.info', function (t) {
-  var out = log.info('hello');
-  t.like(out, /\[INFO\] \d{2}:\d{2}:\d{2} hello/);
+  const log = logFactory(noColorCfg);
+  t.like(log.info('hello'), /\[INFO\] \d{2}:\d{2}:\d{2} hello/);
   t.done();
 });
 
 tap.test('log.warn', function (t) {
-  var out = log.warn('a warning');
-  t.like(out, /\[WARN\] \d{2}:\d{2}:\d{2} a warning/);
+  const log = logFactory(noColorCfg);
+  t.like(log.warn('a warning'), /\[WARN\] \d{2}:\d{2}:\d{2} a warning/);
   t.done();
 });
 
 tap.test('log.error', function (t) {
-  var out = log.error('an error');
-  t.like(out, /\[ERROR\] \d{2}:\d{2}:\d{2} an error/);
+  const log = logFactory(noColorCfg);
+  t.like(log.error('an error'), /\[ERROR\] \d{2}:\d{2}:\d{2} an error/);
   t.done();
 });
 
-tap.test('Disable the timestmap', function (t) {
-  var noTsCfg = Object.assign({}, cfg, { timestamp: false });
-  var noTsLog = logFactory(noTsCfg);
-  var out = noTsLog.info('no timestamp');
-  t.like(out, /\[INFO\] no timestamp/);
+tap.test('Disable the timestamp', function (t) {
+  const log = logFactory({ ...noColorCfg, timestamp: false });
+  t.like(log.info('no timestamp'), /\[INFO\] no timestamp/);
+  t.done();
+});
+
+tap.test('Custom timestamp', function (t) {
+  const log = logFactory({ ...noColorCfg, timestamp: 'yyyy-mm-dd HH:MM:ss' });
+  t.like(log.error('an error'), /\[ERROR\] \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} an error/);
   t.done();
 });
