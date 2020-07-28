@@ -2,7 +2,7 @@ var http = require('http');
 var message = require('./message');
 
 // Changes to this module should not cause a server restart:
-require('./ignoredModule');
+require('./ignored-module');
 
 var server = http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });

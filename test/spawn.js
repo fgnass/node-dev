@@ -40,15 +40,28 @@ tap.test('should handle errors', function (t) {
   });
 });
 
+tap.test('should handle null errors', function (t) {
+  spawn('error-null.js', function (out) {
+    if (out.match(/ERROR/)) {
+      touchFile();
+      return function (out2) {
+        if (out2.match(/Restarting/)) {
+          return { exit: t.end.bind(t) };
+        }
+      };
+    }
+  });
+});
+
 tap.test('should watch if no such module', function (t) {
-  spawn('noSuchModule.js', function (out) {
+  spawn('no-such-module.js', function (out) {
     t.like(out, /ERROR/);
     return { exit: t.end.bind(t) };
   });
 });
 
 tap.test('should run async code un uncaughtException handlers', function (t) {
-  spawn('uncaughtExceptionHandler.js', function (out) {
+  spawn('uncaught-exception-handler.js', function (out) {
     if (out.match(/ERROR/)) {
       return function (out2) {
         if (out2.match(/async \[?ReferenceError/)) {
@@ -60,7 +73,7 @@ tap.test('should run async code un uncaughtException handlers', function (t) {
 });
 
 tap.test('should ignore caught errors', function (t) {
-  spawn('catchNoSuchModule.js', function (out) {
+  spawn('catch-no-such-module.js', function (out) {
     t.like(out, /Caught/);
     return { exit: t.end.bind(t) };
   });

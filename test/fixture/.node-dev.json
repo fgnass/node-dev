@@ -1,7 +1,7 @@
 {
   "notify": false,
   "ignore": [
-    "./ignoredModule.js"
+    "./ignored-module.js"
   ],
   "extensions": {
     "coffee": "coffeescript/register",

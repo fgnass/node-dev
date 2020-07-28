@@ -1,5 +1,12 @@
 # node-dev
 
+## v5.1.0 / 2020-07-28
+
+- [wrap.js] Improve uncaughtException handling to turn non-errors into errors (Fixes #231)
+- [ipc.js] Declare `NODE_DEV` as a variable
+- [ipc.js] Inline single line function only used twice
+- [tests] Filenames should be snake-case
+
 ## v5.0.0 / 2020-07-08
 
 - Remove `--all-deps` and `--no-deps` CLI options, use `--deps=-1` or `--deps=0` respectively
