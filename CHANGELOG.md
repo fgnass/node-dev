@@ -1,5 +1,9 @@
 # node-dev
 
+## v5.2.0 / 2020-08-19
+
+- [lib/ipc.js] Do not send unless connected
+
 ## v5.1.0 / 2020-07-28
 
 - [wrap.js] Improve uncaughtException handling to turn non-errors into errors (Fixes #231)
