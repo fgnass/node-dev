@@ -56,10 +56,12 @@ the project's `node_modules`folder.
 
 # Installation
 
-Node-dev can be installed via npm. Make sure to use the `-g` option to install
-it globally.
+`node-dev` can be installed via `npm`. Installing it with the `-g` option will
+allow you to use it anywhere you would use `node`.
 
-    npm install -g node-dev
+```
+npm install -g node-dev
+```
 
 ### Desktop Notifications
 
@@ -102,35 +104,48 @@ Upon startup node-dev looks for a `.node-dev.json` file in the following directo
 
 Settings found later in the list will overwrite previous options.
 
+### ESModules
+
+When using ESModule syntax and `.mjs` files, `node-dev` will automatically use
+a loader to know which files to watch.
+
+### Passing arguments to node
+
+From v6 onwards, `node-dev` will pass all unknown command-line arguments to
+the `node` process which should provide more flexibility for developers.
+
 ### Dedupe linked modules
 
-Sometimes you need to make sure that multiple modules get
-_exactly the same instance_ of a common (peer-) dependency. This can usually be
-achieved by running `npm dedupe` – however this doesn't work when you try to
-`npm link` a dependency (which is quite common during development). Therefore
-node-dev provides a `--dedupe` switch that will inject the
+Sometimes you need to make sure that multiple modules get _exactly the same
+instance_ of a common (peer-) dependency. This can usually be achieved by
+running `npm dedupe` – however this doesn't work when you try to `npm link` a
+dependency (which is quite common during development). Therefore `node-dev`
+provides a `--dedupe` switch that will inject the
 [dynamic-dedupe](https://www.npmjs.org/package/dynamic-dedupe) module into your
 app.
 
 ### Transpilers
 
-You can also use node-dev to run transpiled languages. You can either use a
-.js file as entry point to your application that registers your transpiler as
-require-extension manually, for example by calling `CoffeeScript.register()` or
-you can let node-dev do this for you.
+You can use `node-dev` to run transpiled languages like TypeScript. You can
+either use a `.js` file as entry point to your application that registers your
+transpiler as a require-extension manually, for example by calling
+`CoffeeScript.register()` or you can let node-dev do this for you.
 
 There is a config option called `extensions` which maps file extensions to
-compiler module names. By default this map looks like this:
+compiler module names. By default the map looks like this:
 
 ```json
     {
         "coffee": "coffee-script/register",
-        "ls": "LiveScript"
+        "ls": "LiveScript",
+        "ts": "ts-node/register"
     }
 ```
 
 This means that if you run `node-dev foo.coffee` node-dev will do a
-`require("coffee-script/register")` before running your script.
+`require("coffee-script/register")` before running your script. You will need
+to have `coffeescript` or `ts-node` installed as a dependency of your package
+for these transpilers to function.
 
 __Note:__ If you want to use coffee-script < 1.7 you have to change the
 setting to `{"coffee": "coffee-script"}`.

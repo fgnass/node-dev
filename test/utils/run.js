@@ -1,19 +1,17 @@
-var spawn = require('./spawn');
-var touchFile = require('./touch-file');
+const spawn = require('./spawn');
+const touchFile = require('./touch-file');
 
-function run(cmd, done) {
-  return spawn(cmd, function (out) {
+module.exports = (cmd, exit) => {
+  return spawn(cmd, out => {
     var touched = false;
-    if (!touched && out.match(/touch message.js/)) {
-      touchFile();
+    if (!touched && out.match(/touch message\.js/)) {
+      touchFile('message.js');
       touched = true;
-      return function (out2) {
+      return out2 => {
         if (out2.match(/Restarting/)) {
-          return { exit: done };
+          return { exit };
         }
       };
     }
   });
-}
-
-module.exports = run;
+};
