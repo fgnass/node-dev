@@ -1,5 +1,18 @@
 # node-dev
 
+## v6.0.0 / 2020-10-14
+
+- Support ESModules in node v12.11.1+ using `get-source-loader.mjs` and `resolve-loader.mjs` for earlier versions (Fixes #212)
+- Pass all unknown arguments to node (Fixes #198)
+- Add a test case for typescript using require on the command line
+- Add a test case for coffeescript using require on the command line
+- Add a test case for `--experimental-specifier-resolution=node`
+- Add a test case for `--inspect`
+- Add `ts-node/register` as a default extension (Fixes #182)
+- [`README.md`] Updated to explain ESModule usage, node arguments, and typescript
+- [`test/utils/touch-file`] Now takes the filename as an argument
+- [`test/utils/spawn`] Also calls the callback with stderr output
+
 ## v5.2.0 / 2020-08-19
 
 - [lib/ipc.js] Do not send unless connected

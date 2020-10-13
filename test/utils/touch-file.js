@@ -1,17 +1,12 @@
-var path = require('path');
-var touch = require('touch');
+const path = require('path');
+const touch = require('touch');
 
-var dir = path.join(__dirname, '..', 'fixture');
-var msgFile = path.join(dir, 'message.js');
+const dir = path.join(__dirname, '..', 'fixture');
 
-// Helpers
-function touchFile() {
-  setTimeout(function () {
-    touch(msgFile);
-  // filewatcher requires a new mtime to trigger a change event
-  // but most file systems only have second precision, so wait
-  // one full second before touching.
-  }, 1000);
-}
+// filewatcher requires a new mtime to trigger a change event
+// but most file systems only have second precision, so wait
+// one full second before touching.
 
-module.exports = touchFile;
+module.exports = filename => {
+  setTimeout(() => touch(path.join(dir, filename)), 1000);
+};
