@@ -10,6 +10,7 @@
       "options": {
         "test": true
       }
-    }
+    },
+    "ts": "ts-node/register"
   }
 }
