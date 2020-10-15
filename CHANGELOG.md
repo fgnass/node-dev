@@ -1,5 +1,9 @@
 # node-dev
 
+## v6.1.0 / 2020-10-15
+
+- Manually wrangle node args so that we can handle `--` args coming before `-` args (Fixes #236)
+
 ## v6.0.0 / 2020-10-14
 
 - Support ESModules in node v12.11.1+ using `get-source-loader.mjs` and `resolve-loader.mjs` for earlier versions (Fixes #212)
