@@ -54,29 +54,34 @@ tap.test('cli overrides .node-dev.json from false to true', t => {
 tap.test('-r ts-node/register --inspect test/fixture/server.js', t => {
   const argv = 'node bin/node-dev -r ts-node/register --inspect test/fixture/server.js'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.ok(nodeArgs.includes('--inspect'));
-  t.ok(nodeArgs.includes('-r'));
+  t.deepEqual(nodeArgs, ['-r', 'ts-node/register', '--inspect']);
   t.done();
 });
 
 tap.test('--inspect -r ts-node/register test/fixture/server.js', t => {
   const argv = 'node bin/node-dev --inspect -r ts-node/register test/fixture/server.js'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.ok(nodeArgs.includes('--inspect'));
-  t.ok(nodeArgs.includes('-r'));
+  t.deepEqual(nodeArgs, ['--inspect', '-r', 'ts-node/register']);
   t.done();
 });
 
 tap.test('--expose_gc gc.js foo', t => {
-  const argv = 'node bin/node-dev --expose_gc test/fixture/gc.js foo'.split(' ');
+  const argv = 'node bin/node-dev --expose_gc test/fixture/gc.js test/fixture/foo'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.ok(nodeArgs.includes('--expose_gc'));
+  t.deepEqual(nodeArgs, ['--expose_gc']);
   t.done();
 });
 
-tap.test('--require=coffeescript/register server.coffee', t => {
+tap.test('--require=coffeescript/register test/fixture/server.coffee', t => {
   const argv = 'node bin/node-dev --require=coffeescript/register test/fixture/server.coffee'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.ok(nodeArgs.includes('--require=coffeescript/register'));
+  t.deepEqual(nodeArgs, ['--require=coffeescript/register']);
+  t.done();
+});
+
+tap.test('-r coffeescript/register -r ts-node/register test/fixture/server.coffee', t => {
+  const argv = 'node bin/node-dev -r coffeescript/register -r ts-node/register test/fixture/server.coffee'.split(' ');
+  const { nodeArgs } = cli(argv);
+  t.deepEqual(nodeArgs, ['-r', 'coffeescript/register', '-r', 'ts-node/register']);
   t.done();
 });
