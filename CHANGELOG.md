@@ -1,5 +1,9 @@
 # node-dev
 
+## v6.2.0 / 2020-10-15
+
+- Handle multiple values of arguments in command line (Fixes #238)
+
 ## v6.1.0 / 2020-10-15
 
 - Manually wrangle node args so that we can handle `--` args coming before `-` args (Fixes #236)
