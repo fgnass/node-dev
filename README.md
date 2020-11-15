@@ -183,7 +183,7 @@ handle this event with:
 
 ```javascript
 process.on("message", function (msg) {
-  if (msg === "<graceful_ipc argument") {
+  if (msg === "<graceful_ipc argument>") {
     // Gracefully shut down here
     doGracefulShutdown();
   }
