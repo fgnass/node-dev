@@ -1,5 +1,22 @@
 # node-dev
 
+## v6.3.0 / 2021-02-22
+
+- Stop disconnecting from child processes, this should prevent internal EPIPE errors
+- Stop adding filewatchers until child processes have completed exiting
+- [IPC] Stop listening on `message`
+- [IPC] Remove extraneous `dest` arguments
+- [IPC] Add a connected guard on relay
+- [Test] Move cluster from `run` to `spawn`
+- [Test] Fix typo in cluster test
+- [Test] Cluster test now waits for children processes to successfully start up again
+- [Test] Add guards to IPC and cluster tests to prevent process exit from ending the test a 2nd time
+- [`dependency`] Update `semver` from `v7.3.2 `to `v7.3.4`
+- [`devDependency`] Remove `nyc`
+- [`devDependency`] Update `@types/node`, `eslint`, `eslint-config-airbnb-base`, `tap`, `ts-node`, & `typescript`
+- [`Vagrantfile`] Remove `Vagrantfile`
+- [`README`] Fix typo (@ivalsaraj)
+
 ## v6.2.0 / 2020-10-15
 
 - Handle multiple values of arguments in command line (Fixes #238)
