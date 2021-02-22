@@ -6,10 +6,6 @@ tap.test('Restart the server', function (t) {
   run('server.js', t.end.bind(t));
 });
 
-tap.test('Restart the cluster', function (t) {
-  run('cluster.js', t.end.bind(t));
-});
-
 tap.test('Supports vm functions', function (t) {
   run('vmtest.js', t.end.bind(t));
 });

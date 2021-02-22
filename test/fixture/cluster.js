@@ -19,7 +19,7 @@ if (cluster.isWorker) {
 
   process.on('disconnect', function () {
     console.log(process.pid, 'disconnect received, shutting down');
-    if (server.lisening) {
+    if (server.listening) {
       server.close();
     }
   });

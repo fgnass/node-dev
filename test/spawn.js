@@ -117,6 +117,27 @@ tap.test('should relay stdin', t => {
   p.stdin.write('foo');
 });
 
+tap.test('Restart the cluster', t => {
+  spawn('cluster.js', out => {
+    if (out.match(/touch message\.js/)) {
+      touchFile('message.js');
+      return out2 => {
+        if (out2.match(/Restarting/)) {
+          return out3 => {
+            if (out3.match(/All workers disconnected/)) {
+              return out4 => {
+                if (out4.match(/touch message\.js/)) {
+                  return { exit: t.end.bind(t) };
+                }
+              };
+            }
+          };
+        }
+      };
+    }
+  });
+});
+
 tap.test('should kill the forked processes', t => {
   spawn('pid.js', out => {
     const pid = parseInt(out, 10);

@@ -18,6 +18,7 @@ module.exports = (cmd, cb) => {
   }
 
   function outHandler(data) {
+    console.log(data.toString());
     const ret = cb.call(ps, data.toString());
 
     if (typeof ret == 'function') {
