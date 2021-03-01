@@ -71,17 +71,3 @@ tap.test('--expose_gc gc.js foo', t => {
   t.deepEqual(nodeArgs, ['--expose_gc']);
   t.done();
 });
-
-tap.test('--require=coffeescript/register test/fixture/server.coffee', t => {
-  const argv = 'node bin/node-dev --require=coffeescript/register test/fixture/server.coffee'.split(' ');
-  const { nodeArgs } = cli(argv);
-  t.deepEqual(nodeArgs, ['--require=coffeescript/register']);
-  t.done();
-});
-
-tap.test('-r coffeescript/register -r ts-node/register test/fixture/server.coffee', t => {
-  const argv = 'node bin/node-dev -r coffeescript/register -r ts-node/register test/fixture/server.coffee'.split(' ');
-  const { nodeArgs } = cli(argv);
-  t.deepEqual(nodeArgs, ['-r', 'coffeescript/register', '-r', 'ts-node/register']);
-  t.done();
-});

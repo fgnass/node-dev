@@ -219,20 +219,6 @@ tap.test('Logs timestamp by default', t => {
   });
 });
 
-tap.test('Supports require from the command-line (coffeescript/register)', t => {
-  spawn('--require=coffeescript/register server.coffee', out => {
-    if (out.match(/touch message.js/)) {
-      touchFile('message.js');
-      return out2 => {
-        if (out2.match(/Restarting/)) {
-          t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
-          return { exit: t.end.bind(t) };
-        }
-      };
-    }
-  });
-});
-
 tap.test('Supports require from the command-line (ts-node/register)', t => {
   spawn('--require=ts-node/register typescript/index.ts', out => {
     if (out.match(/touch message.js/)) {

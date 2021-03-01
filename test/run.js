@@ -13,7 +13,3 @@ tap.test('Supports vm functions', function (t) {
 tap.test('Supports vm functions with missing file argument', function (t) {
   run('vmtest.js nofile', t.end.bind(t));
 });
-
-tap.test('Supports coffeescript', function (t) {
-  run('server.coffee', t.end.bind(t));
-});
