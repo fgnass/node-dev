@@ -7,11 +7,13 @@ var server = http.createServer(function (req, res) {
   res.end('\n');
 });
 
-server.on('listening', function () {
-  var addr = this.address();
-  console.log('Server listening on %s:%s', addr.address, addr.port);
-  console.log(message);
-}).listen(0);
+server
+  .on('listening', function () {
+    var addr = this.address();
+    console.log('Server listening on %s:%s', addr.address, addr.port);
+    console.log(message);
+  })
+  .listen(0);
 
 process.on('message', function (data) {
   if (data === 'node-dev:restart') {
