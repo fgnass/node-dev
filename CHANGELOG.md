@@ -5,6 +5,9 @@
 - Remove coffeescript tests and dev dependency
 - Use eslint:recommended instead of airbnb-base/legacy
 - Add prettier
+- Add package-lock.json
+- Add lint-staged
+- Update the README
 
 ## v6.3.0 / 2021-02-22
 
