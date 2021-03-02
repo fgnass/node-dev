@@ -1,6 +1,6 @@
 {
   "name": "node-dev",
-  "version": "6.3.0",
+  "version": "6.3.1",
   "description": "Restarts your app when files are modified",
   "keywords": [
     "restart",
@@ -20,7 +20,7 @@
   },
   "license": "MIT",
   "bin": {
-    "node-dev": "./bin/node-dev"
+    "node-dev": "bin/node-dev"
   },
   "main": "./lib",
   "engines": {
