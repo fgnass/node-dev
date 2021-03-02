@@ -1,5 +1,10 @@
 # node-dev
 
+## v6.4.0 / 2021-03-02
+
+- Update node-notifier
+- Remove the SIGTERM listener when a signal is received so that other listeners don't see ours.
+
 ## v6.3.1 / 2021-03-02
 
 - Remove coffeescript tests and dev dependency
