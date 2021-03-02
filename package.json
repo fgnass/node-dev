@@ -23,7 +23,6 @@
     "node-dev": "./bin/node-dev"
   },
   "main": "./lib",
-  "preferGlobal": true,
   "engines": {
     "node": ">=10"
   },
