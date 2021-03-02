@@ -1,5 +1,11 @@
 # node-dev
 
+## v6.3.1 / 2021-03-02
+
+- Remove coffeescript tests and dev dependency
+- Use eslint:recommended instead of airbnb-base/legacy
+- Add prettier
+
 ## v6.3.0 / 2021-02-22
 
 - Stop disconnecting from child processes, this should prevent internal EPIPE errors
@@ -141,16 +147,16 @@
 ## v2.7.0 / 2015-08-17
 
 - Support ignoring file paths, e.g. for universal (isomorphic) apps. See
-  [`README`][README-ignore-paths] for more details.
+  [`README`][readme-ignore-paths] for more details.
 - Use [`commander`][npm-commander] for CLI argument parsing instead of custom code.
-- Extract [`LICENSE`][LICENSE] file.
+- Extract [`LICENSE`][license] file.
 - Upgrade [`tap`][npm-tap] module to 1.3.2.
 - Use [`touch`][npm-touch] module instead of custom code.
 
-[LICENSE]: LICENSE
+[license]: LICENSE
 [npm-commander]: https://www.npmjs.com/package/commander
 [npm-minimist]: https://www.npmjs.com/package/minimist
 [npm-tap]: https://www.npmjs.com/package/tap
 [npm-touch]: https://www.npmjs.com/package/touch
-[README]: README.md
-[README-ignore-paths]: README.md#ignore-paths
+[readme]: README.md
+[readme-ignore-paths]: README.md#ignore-paths
