@@ -1,40 +1,39 @@
-var cluster = require('cluster');
+const { disconnect, fork, isMaster, isWorker } = require('cluster');
 
-function createWorker(i) {
-  var worker = cluster.fork();
+const createWorker = i => {
+  const worker = fork();
 
-  worker.on('message', function (msg) {
-    console.log('Message from worker' + i + ':', msg);
+  worker.on('message', msg => {
+    console.log(`Message from worker ${i}: ${msg}`);
   });
 
-  worker.on('exit', function (code) {
-    console.log('Worker', i, 'exited with code:', code);
+  worker.on('exit', code => {
+    console.log(`Worker ${i} exited with code: ${code}`);
   });
 
   return worker;
-}
+};
 
-if (cluster.isWorker) {
-  var server = require('./server');
+if (isWorker) {
+  const server = require('./server');
 
-  process.on('disconnect', function () {
-    console.log(process.pid, 'disconnect received, shutting down');
-    if (server.listening) {
-      server.close();
-    }
+  process.on('disconnect', () => {
+    console.log(`${process.pid} disconnect received, shutting down`);
+    if (server.listening) server.close();
   });
 
   process.send('Hello');
 }
 
-if (cluster.isMaster) {
-  for (var i = 0; i < 2; i += 1) {
+if (isMaster) {
+  for (let i = 0; i < 2; i += 1) {
     console.log('Forking worker', i);
     createWorker(i);
   }
-  process.once('SIGTERM', function () {
+
+  process.once('SIGTERM', () => {
     console.log('Master received SIGTERM');
-    cluster.disconnect(function () {
+    disconnect(() => {
       console.log('All workers disconnected.');
     });
   });
