@@ -23,9 +23,7 @@ process.on('message', data => {
   }
 });
 
-process.once('beforeExit', () => {
-  console.log('exit');
-});
+process.once('beforeExit', () => console.log('exit'));
 
 process.once('SIGTERM', () => {
   if (server.listening) server.close();

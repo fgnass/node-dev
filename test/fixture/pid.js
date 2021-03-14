@@ -1,5 +1,3 @@
-require('http').createServer().listen(0);
+const server = require('http').createServer().listen(0);
 console.log(process.pid);
-process.on('SIGTERM', function () {
-  process.exit();
-});
+process.once('SIGTERM', () => server.close());
