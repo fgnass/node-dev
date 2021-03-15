@@ -1,3 +1,7 @@
+.eslintrc
+.eslintcache
 .nyc_output
+.prettierrc
+.travis.yml
 package-lock.json
 test
