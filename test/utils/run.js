@@ -3,7 +3,7 @@ const touchFile = require('./touch-file');
 
 module.exports = (cmd, exit) => {
   return spawn(cmd, out => {
-    var touched = false;
+    let touched = false;
     if (!touched && out.match(/touch message\.js/)) {
       touchFile('message.js');
       touched = true;

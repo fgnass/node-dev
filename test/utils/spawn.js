@@ -21,7 +21,7 @@ module.exports = (cmd, cb) => {
     console.log(data.toString());
     const ret = cb.call(ps, data.toString());
 
-    if (typeof ret == 'function') {
+    if (typeof ret === 'function') {
       // use the returned function as new callback
       cb = ret;
     } else if (ret && ret.exit) {
