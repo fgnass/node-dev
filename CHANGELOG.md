@@ -1,5 +1,18 @@
 # node-dev
 
+## v6.5.0 / 2021-03-19
+
+- [.npmignore] We can ignore some dotfiles that aren't necessary for the module to function
+- [.gitignore] Add `package-lock.json`
+- Prefer extracting only the method names from modules that we require, this is a preparatory step for switching to import statements and enables tree shaking.
+- Prefer using triple equals instead of double.
+- Prefer using arrow functions
+- [lib/ignore.js] Move ignore logic into its own file
+- [lib/local-path.js] Move local path function into its own file
+- [lib/log.js] Convert to ES6
+- [lib/notify.js] Convert to ES6
+- [test] Finish converting to ES6 style code
+
 ## v6.4.0 / 2021-03-02
 
 - Update node-notifier
