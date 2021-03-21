@@ -85,3 +85,21 @@ tap.test('--expose_gc gc.js foo', t => {
   t.deepEqual(nodeArgs, ['--expose_gc']);
   t.done();
 });
+
+tap.test('clear is not enabled by default', t => {
+  const {
+    opts: { clear }
+  } = cli(['node', 'bin/node-dev', 'test']);
+
+  t.false(clear);
+  t.done();
+});
+
+tap.test('--clear enables clear', t => {
+  const {
+    opts: { clear }
+  } = cli(['node', 'bin/node-dev', '--clear', 'test']);
+
+  t.true(clear);
+  t.done();
+});
