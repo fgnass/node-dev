@@ -1,4 +1,4 @@
-require('./cli.js');
-require('./log.js');
-require('./run.js');
-require('./spawn.js');
+require('./cli');
+require('./log');
+require('./run');
+require('./spawn');

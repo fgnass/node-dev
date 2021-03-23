@@ -1,8 +1,12 @@
 const child = require('child_process');
 const path = require('path');
 
+const { control } = require('../../lib/clear');
+
 const bin = path.join(__dirname, '..', '..', 'bin', 'node-dev');
 const dir = path.join(__dirname, '..', 'fixture');
+
+const reClear = new RegExp(control);
 
 module.exports = (cmd, cb) => {
   const ps = child.spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
@@ -18,7 +22,9 @@ module.exports = (cmd, cb) => {
   }
 
   function outHandler(data) {
-    console.log(data.toString());
+    // Don't log clear
+    console.log(data.toString().replace(reClear, ''));
+
     const ret = cb.call(ps, data.toString());
 
     if (typeof ret === 'function') {

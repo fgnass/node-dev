@@ -10,6 +10,8 @@
   },
   "rules": {
     "eqeqeq": "error",
-    "prefer-arrow-callback": "error"
+    "no-trailing-spaces": "error",
+    "prefer-arrow-callback": "error",
+    "semi": "error"
   }
 }
