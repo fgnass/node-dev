@@ -1,5 +1,17 @@
 # node-dev
 
+## v6.6.0 / 2021-03-23
+
+- `--clear` now clears the screen on first start
+- `--clear` uses `\u001bc` instead of `\033[2J\033[H`
+- [.eslintrc] Add rules for semicolons and whitespace
+- [test/cli] Add tests for clear
+- [test/spawn] Add tests for clear
+- [test/spawn] Move into directory
+- [test/utils/spawn] Strip out control char when logging
+- [lib/clear] Move clear logic into separate file
+- [lib/index] Group similar code
+
 ## v6.5.0 / 2021-03-19
 
 - [.npmignore] We can ignore some dotfiles that aren't necessary for the module to function
