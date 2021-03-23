@@ -1,8 +1,8 @@
 const semver = require('semver');
 const tap = require('tap');
 
-const spawn = require('./utils/spawn');
-const touchFile = require('./utils/touch-file');
+const spawn = require('../utils/spawn');
+const touchFile = require('../utils/touch-file');
 
 tap.test('should pass unknown args to node binary', t => {
   spawn('--expose_gc gc.js foo', out => {
@@ -293,3 +293,5 @@ tap.test('Supports --inspect', t => {
     }
   });
 });
+
+require('./clear.js');
