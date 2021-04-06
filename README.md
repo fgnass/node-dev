@@ -32,6 +32,7 @@ node-dev src/server.ts
 There are a couple of command-line options that can be used to control which files are watched and what happens when they change:
 
 - `--clear` - Clear the screen on restart
+- `--debounce` - Debounce change events by time in milliseconds (non-polling mode, default: 10)
 - `--dedupe` - [Dedupe dynamically](https://www.npmjs.org/package/dynamic-dedupe)
 - `--deps`:
   - `-1` - Watch the whole dependency tree
@@ -41,10 +42,9 @@ There are a couple of command-line options that can be used to control which fil
 - `--fork` - Hook into child_process.fork
 - `--graceful_ipc <msg>` - Send 'msg' as an IPC message instead of SIGTERM for restart/shutdown
 - `--ignore` - A file whose changes should not cause a restart
+- `--interval` - Polling interval in milliseconds (default: 1000)
 - `--notify=false` - Disable desktop notifications
 - `--poll` - Force polling for file changes (Caution! CPU-heavy!)
-- `--interval` - Polling interval in milliseconds (default: 1000)
-- `--debounce` - Debounce change events by time in milliseconds (non-polling mode, default: 10)
 - `--respawn` - Keep watching for changes after the script has exited
 - `--timestamp` - The timestamp format to use for logging restarts
 - `--vm` - Load files using Node's VM
