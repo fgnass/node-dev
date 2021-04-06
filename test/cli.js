@@ -103,3 +103,39 @@ tap.test('--clear enables clear', t => {
   t.true(clear);
   t.done();
 });
+
+tap.test('interval default', t => {
+  const {
+    opts: { interval }
+  } = cli(['node', 'bin/node-dev', 'test']);
+
+  t.is(interval, 1000);
+  t.done();
+});
+
+tap.test('--interval=2000', t => {
+  const {
+    opts: { interval }
+  } = cli(['node', 'bin/node-dev', '--interval=2000', 'test']);
+
+  t.is(interval, 2000);
+  t.done();
+});
+
+tap.test('debounce default', t => {
+  const {
+    opts: { debounce }
+  } = cli(['node', 'bin/node-dev', 'test']);
+
+  t.is(debounce, 10);
+  t.done();
+});
+
+tap.test('--debounce=2000', t => {
+  const {
+    opts: { debounce }
+  } = cli(['node', 'bin/node-dev', '--debounce=2000', 'test']);
+
+  t.is(debounce, 2000);
+  t.done();
+});
