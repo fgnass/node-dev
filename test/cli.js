@@ -7,8 +7,8 @@ tap.test('notify is enabled by default', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', 'test']);
 
-  t.is(notify, true);
-  t.done();
+  t.equal(notify, true);
+  t.end();
 });
 
 tap.test('--no-notify', t => {
@@ -16,8 +16,8 @@ tap.test('--no-notify', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', '--no-notify', 'test']);
 
-  t.is(notify, false);
-  t.done();
+  t.equal(notify, false);
+  t.end();
 });
 
 tap.test('--notify=false', t => {
@@ -25,8 +25,8 @@ tap.test('--notify=false', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', '--notify=false', 'test']);
 
-  t.is(notify, false);
-  t.done();
+  t.equal(notify, false);
+  t.end();
 });
 
 tap.test('--notify', t => {
@@ -34,8 +34,8 @@ tap.test('--notify', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', '--notify', 'test']);
 
-  t.is(notify, true);
-  t.done();
+  t.equal(notify, true);
+  t.end();
 });
 
 tap.test('--notify=true', t => {
@@ -43,8 +43,8 @@ tap.test('--notify=true', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', '--notify=true', 'test']);
 
-  t.is(notify, true);
-  t.done();
+  t.equal(notify, true);
+  t.end();
 });
 
 tap.test('notify can be disabled by .node-dev.json', t => {
@@ -52,8 +52,8 @@ tap.test('notify can be disabled by .node-dev.json', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', 'test/fixture/server.js']);
 
-  t.is(notify, false);
-  t.done();
+  t.equal(notify, false);
+  t.end();
 });
 
 tap.test('cli overrides .node-dev.json from false to true', t => {
@@ -61,29 +61,29 @@ tap.test('cli overrides .node-dev.json from false to true', t => {
     opts: { notify }
   } = cli(['node', 'bin/node-dev', '--notify=true', 'test/fixture/server.js']);
 
-  t.is(notify, true);
-  t.done();
+  t.equal(notify, true);
+  t.end();
 });
 
 tap.test('-r ts-node/register --inspect test/fixture/server.js', t => {
   const argv = 'node bin/node-dev -r ts-node/register --inspect test/fixture/server.js'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.deepEqual(nodeArgs, ['-r', 'ts-node/register', '--inspect']);
-  t.done();
+  t.same(nodeArgs, ['-r', 'ts-node/register', '--inspect']);
+  t.end();
 });
 
 tap.test('--inspect -r ts-node/register test/fixture/server.js', t => {
   const argv = 'node bin/node-dev --inspect -r ts-node/register test/fixture/server.js'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.deepEqual(nodeArgs, ['--inspect', '-r', 'ts-node/register']);
-  t.done();
+  t.same(nodeArgs, ['--inspect', '-r', 'ts-node/register']);
+  t.end();
 });
 
 tap.test('--expose_gc gc.js foo', t => {
   const argv = 'node bin/node-dev --expose_gc test/fixture/gc.js test/fixture/foo'.split(' ');
   const { nodeArgs } = cli(argv);
-  t.deepEqual(nodeArgs, ['--expose_gc']);
-  t.done();
+  t.same(nodeArgs, ['--expose_gc']);
+  t.end();
 });
 
 tap.test('clear is not enabled by default', t => {
@@ -91,8 +91,8 @@ tap.test('clear is not enabled by default', t => {
     opts: { clear }
   } = cli(['node', 'bin/node-dev', 'test']);
 
-  t.false(clear);
-  t.done();
+  t.notOk(clear);
+  t.end();
 });
 
 tap.test('--clear enables clear', t => {
@@ -100,8 +100,8 @@ tap.test('--clear enables clear', t => {
     opts: { clear }
   } = cli(['node', 'bin/node-dev', '--clear', 'test']);
 
-  t.true(clear);
-  t.done();
+  t.ok(clear);
+  t.end();
 });
 
 tap.test('interval default', t => {
@@ -109,8 +109,8 @@ tap.test('interval default', t => {
     opts: { interval }
   } = cli(['node', 'bin/node-dev', 'test']);
 
-  t.is(interval, 1000);
-  t.done();
+  t.equal(interval, 1000);
+  t.end();
 });
 
 tap.test('--interval=2000', t => {
@@ -118,8 +118,8 @@ tap.test('--interval=2000', t => {
     opts: { interval }
   } = cli(['node', 'bin/node-dev', '--interval=2000', 'test']);
 
-  t.is(interval, 2000);
-  t.done();
+  t.equal(interval, 2000);
+  t.end();
 });
 
 tap.test('debounce default', t => {
@@ -127,8 +127,8 @@ tap.test('debounce default', t => {
     opts: { debounce }
   } = cli(['node', 'bin/node-dev', 'test']);
 
-  t.is(debounce, 10);
-  t.done();
+  t.equal(debounce, 10);
+  t.end();
 });
 
 tap.test('--debounce=2000', t => {
@@ -136,6 +136,6 @@ tap.test('--debounce=2000', t => {
     opts: { debounce }
   } = cli(['node', 'bin/node-dev', '--debounce=2000', 'test']);
 
-  t.is(debounce, 2000);
-  t.done();
+  t.equal(debounce, 2000);
+  t.end();
 });

@@ -1,5 +1,14 @@
 # node-dev
 
+## v6.7.0 / 2021-04-07
+
+- [New Option] `--debounce` to control how long to wait before restarting
+- [New Option] `--interval` to adjust the polling interval when enabled
+- [`test`] Stop using `tap` aliases
+- [`husky`] Migrate from `v4` to `v6`
+- [dependencies] Update `semver` from `v7.3.4` to `v7.3.5`
+- [devDependencies] Update `@types/node`, `eslint`, `husky`, & `tap`
+
 ## v6.6.0 / 2021-03-23
 
 - `--clear` now clears the screen on first start
