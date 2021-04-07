@@ -6,7 +6,7 @@ const touchFile = require('../utils/touch-file');
 
 tap.test('should pass unknown args to node binary', t => {
   spawn('--expose_gc gc.js foo', out => {
-    t.is(out.trim(), 'foo function');
+    t.equal(out.trim(), 'foo function');
     return { exit: t.end.bind(t) };
   });
 });
@@ -79,7 +79,7 @@ tap.test('should run async code un uncaughtException handlers', t => {
 
 tap.test('should ignore caught errors', t => {
   spawn('catch-no-such-module.js', out => {
-    t.like(out, /Caught/);
+    t.match(out, /Caught/);
     return { exit: t.end.bind(t) };
   });
 });
@@ -87,16 +87,16 @@ tap.test('should ignore caught errors', t => {
 tap.test('should not show up in argv', t => {
   spawn('argv.js foo', out => {
     const argv = JSON.parse(out.replace(/'/g, '"'));
-    t.like(argv[0], /.*?node(js|\.exe)?$/);
-    t.is(argv[1], 'argv.js');
-    t.is(argv[2], 'foo');
+    t.match(argv[0], /.*?node(js|\.exe)?$/);
+    t.equal(argv[1], 'argv.js');
+    t.equal(argv[2], 'foo');
     return { exit: t.end.bind(t) };
   });
 });
 
 tap.test('should pass through the exit code', t => {
   spawn('exit.js').on('exit', code => {
-    t.is(code, 101);
+    t.equal(code, 101);
     t.end();
   });
 });
@@ -104,14 +104,14 @@ tap.test('should pass through the exit code', t => {
 tap.test('should conceal the wrapper', t => {
   // require.main should be main.js not wrap.js!
   spawn('main.js').on('exit', code => {
-    t.is(code, 0);
+    t.equal(code, 0);
     t.end();
   });
 });
 
 tap.test('should relay stdin', t => {
   const p = spawn('echo.js', out => {
-    t.is(out, 'foo');
+    t.equal(out, 'foo');
     return { exit: t.end.bind(t) };
   });
   p.stdin.write('foo');
@@ -160,7 +160,7 @@ tap.test('should kill the forked processes', t => {
 
 tap.test('should *not* set NODE_ENV', t => {
   spawn('env.js', out => {
-    t.notLike(out, /development/);
+    t.notMatch(out, /development/);
     return { exit: t.end.bind(t) };
   });
 });
@@ -211,7 +211,7 @@ tap.test('Logs timestamp by default', t => {
       touchFile('message.js');
       return out2 => {
         if (out2.match(/Restarting/)) {
-          t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
           return { exit: t.end.bind(t) };
         }
       };
@@ -225,7 +225,7 @@ tap.test('Supports require from the command-line (ts-node/register)', t => {
       touchFile('message.js');
       return out2 => {
         if (out2.match(/Restarting/)) {
-          t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
           return { exit: t.end.bind(t) };
         }
       };
@@ -239,7 +239,7 @@ tap.test('Uses ts-node/register for .ts files through config file (also the defa
       touchFile('message.js');
       return out2 => {
         if (out2.match(/Restarting/)) {
-          t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
           return { exit: t.end.bind(t) };
         }
       };
@@ -253,7 +253,7 @@ tap.test('Supports ECMAScript modules', t => {
       touchFile('message.mjs');
       return out2 => {
         if (out2.match(/Restarting/)) {
-          t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
           return { exit: t.end.bind(t) };
         }
       };
@@ -269,7 +269,7 @@ tap.test('Supports ECMAScript modules with experimental-specifier-resolution', t
       touchFile('message.js');
       return out2 => {
         if (out2.match(/Restarting/)) {
-          t.like(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
           return { exit: t.end.bind(t) };
         }
       };
