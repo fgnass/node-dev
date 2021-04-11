@@ -123,7 +123,7 @@ tap.test('--interval=2000', t => {
   t.end();
 });
 
-tap.only('--content=output', t => {
+tap.test('--content=output', t => {
   const {
     opts: { content }
   } = cli(['node', 'bin/node-dev', '--content=output', 'test']);
@@ -132,7 +132,7 @@ tap.only('--content=output', t => {
   t.end();
 });
 
-tap.only('--content', t => {
+tap.test('--content', t => {
   const {
     opts: { content }
   } = cli(['node', 'bin/node-dev', '--content', 'test']);

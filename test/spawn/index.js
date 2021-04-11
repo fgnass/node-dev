@@ -50,7 +50,7 @@ tap.test('should not restart with --content on file touch', t => {
   });
 });
 
-tap.only('should restart the server with --content twice', t => {
+tap.test('should restart the server with --content twice', t => {
   revertFileImmediate('message-content.js');
   spawn('--content server.js', out => {
     console.log('out', out);
