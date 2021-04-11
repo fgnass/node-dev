@@ -1,3 +1,4 @@
+const path = require('path');
 const tap = require('tap');
 
 const cli = require('../lib/cli.js');
@@ -119,6 +120,24 @@ tap.test('--interval=2000', t => {
   } = cli(['node', 'bin/node-dev', '--interval=2000', 'test']);
 
   t.equal(interval, 2000);
+  t.end();
+});
+
+tap.only('--content=output', t => {
+  const {
+    opts: { content }
+  } = cli(['node', 'bin/node-dev', '--content=output', 'test']);
+
+  t.same(content, [path.resolve(process.cwd(), 'output')]);
+  t.end();
+});
+
+tap.only('--content', t => {
+  const {
+    opts: { content }
+  } = cli(['node', 'bin/node-dev', '--content', 'test']);
+
+  t.same(content, [path.resolve(process.cwd())]);
   t.end();
 });
 
