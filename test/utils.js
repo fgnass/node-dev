@@ -1,15 +1,16 @@
-const child = require('child_process');
-const path = require('path');
+const { spawn } = require('child_process');
+const { join } = require('path');
+const touch = require('touch');
 
-const { control } = require('../../lib/clear');
+const { control } = require('../lib/clear');
 
-const bin = path.join(__dirname, '..', '..', 'bin', 'node-dev');
-const dir = path.join(__dirname, '..', 'fixture');
+const bin = join(__dirname, '..', 'bin', 'node-dev');
+const dir = join(__dirname, 'fixture');
 
 const reClear = new RegExp(control);
 
-module.exports = (cmd, cb) => {
-  const ps = child.spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
+exports.spawn = (cmd, cb) => {
+  const ps = spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
   let err = '';
 
   function errorHandler(data) {
@@ -47,4 +48,12 @@ module.exports = (cmd, cb) => {
   ps.stdout.on('data', outHandler);
 
   return ps;
+};
+
+// filewatcher requires a new mtime to trigger a change event
+// but most file systems only have second precision, so wait
+// one full second before touching.
+
+exports.touchFile = filename => {
+  setTimeout(() => touch(join(dir, filename)), 1000);
 };
