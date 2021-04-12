@@ -1,7 +1,6 @@
 const tap = require('tap');
 
-const spawn = require('../utils/spawn');
-const touchFile = require('../utils/touch-file');
+const { spawn, touchFile } = require('../utils');
 
 tap.test('Restart the cluster', t => {
   spawn('cluster.js', out => {

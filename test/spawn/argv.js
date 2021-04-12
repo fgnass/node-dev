@@ -1,6 +1,6 @@
 const tap = require('tap');
 
-const spawn = require('../utils/spawn');
+const { spawn } = require('../utils');
 
 tap.test('should not show up in argv', t => {
   spawn('argv.js foo', out => {

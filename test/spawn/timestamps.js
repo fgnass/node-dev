@@ -2,18 +2,14 @@ const tap = require('tap');
 
 const { spawn, touchFile } = require('../utils');
 
-tap.test('should restart the server twice', t => {
+tap.test('Logs timestamp by default', t => {
   spawn('server.js', out => {
     if (out.match(/touch message.js/)) {
       touchFile('message.js');
       return out2 => {
         if (out2.match(/Restarting/)) {
-          touchFile('message.js');
-          return out3 => {
-            if (out3.match(/Restarting/)) {
-              return { exit: t.end.bind(t) };
-            }
-          };
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          return { exit: t.end.bind(t) };
         }
       };
     }

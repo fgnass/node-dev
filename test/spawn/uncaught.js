@@ -1,6 +1,6 @@
 const tap = require('tap');
 
-const spawn = require('../utils/spawn');
+const { spawn } = require('../utils');
 
 tap.test('should run async code uncaughtException handlers', t => {
   spawn('uncaught-exception-handler.js', out => {

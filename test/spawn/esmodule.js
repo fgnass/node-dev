@@ -1,8 +1,7 @@
 const semver = require('semver');
 const tap = require('tap');
 
-const spawn = require('../utils/spawn');
-const touchFile = require('../utils/touch-file');
+const { spawn, touchFile } = require('../utils');
 
 tap.test('Supports ECMAScript modules with experimental-specifier-resolution', t => {
   if (semver.satisfies(process.version, '<12.17')) return t.skip();

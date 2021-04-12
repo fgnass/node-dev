@@ -1,6 +1,6 @@
 const tap = require('tap');
 
-const spawn = require('../utils/spawn');
+const { spawn } = require('../utils');
 
 tap.test('should watch if no such module', t => {
   let passed = false;
