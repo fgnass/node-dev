@@ -11,7 +11,7 @@ install:
   - npm install
 
 test_script:
-  - node test | ./node_modules/.bin/tap-xunit | tee test-results.xml
+  - node test | node_modules\.bin\tap-xunit | tee test-results.xml
 
 after_test:
   - ps: |
