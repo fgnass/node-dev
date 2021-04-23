@@ -2,13 +2,9 @@ const tap = require('tap');
 
 const { spawn, touchFile } = require('../utils');
 
-const { control } = require('../../lib/clear');
-
-const reClear = new RegExp(control);
-
-tap.test('--clear', t => {
-  spawn('--clear server.js', out => {
-    if (reClear.test(out)) {
+tap.test('Supports --inspect', t => {
+  spawn('--inspect server.js', out => {
+    if (out.match(/Debugger listening on/)) {
       return out2 => {
         if (out2.match(/touch message.js/)) {
           touchFile('message.js');

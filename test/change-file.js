@@ -1,7 +1,7 @@
 const { join } = require('path');
 const fs = require('fs');
 
-const dir = join(__dirname, '..', 'fixture');
+const dir = join(__dirname, 'fixture');
 
 const replaceInFile = (filePath, from, to) => {
   fs.writeFileSync(filePath, fs.readFileSync(filePath, 'utf-8').replace(from, to));

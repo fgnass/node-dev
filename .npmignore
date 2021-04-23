@@ -5,3 +5,4 @@
 .travis.yml
 package-lock.json
 test
+test-results.xml
