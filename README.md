@@ -66,9 +66,9 @@ npm install -g node-dev
 Status and error messages can be displayed as desktop notification using
 [node-notifier](https://www.npmjs.org/package/node-notifier):
 
-![Screenshot](http://fgnass.github.com/images/node-dev.png)
+![Screenshot](./images/node-dev.png)
 
-![Screenshot](http://fgnass.github.com/images/node-dev-linux.png)
+![Screenshot](./images/node-dev-linux.png)
 
 **Requirements:**
 

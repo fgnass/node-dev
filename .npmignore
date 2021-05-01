@@ -1,8 +1,12 @@
+.appveyor.yml
 .eslintrc
 .eslintcache
+.github
+.husky
 .nyc_output
 .prettierrc
 .travis.yml
+images
 package-lock.json
 test
 test-results.xml
