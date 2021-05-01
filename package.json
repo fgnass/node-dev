@@ -24,7 +24,7 @@
   },
   "main": "./lib",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "lint": "eslint lib test bin/node-dev",
