@@ -16,6 +16,7 @@ require('./node-env');
 require('./relay-stdin');
 require('./require-extensions');
 require('./restart-twice');
+require('./content');
 require('./sigterm');
 require('./timestamps');
 require('./typescript');
