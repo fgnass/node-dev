@@ -1,5 +1,23 @@
 # node-dev
 
+## v7.0.0 / 2021-05-04
+
+- [CLI] Improve command-line parsing, restore support for --require with a space
+- [README] Move images into repo and fix URLs
+- [dependencies] Update `minimist` from `v1.1.3` to `v1.2.5`
+- [.npmignore] Add more config files
+
+### Developer Updates
+
+- [CI] Add github workflows
+- [CI] Add appveyor
+- [CI] Start testing against node v16
+- [CI] Stop testing against node v10
+- [`test/spawn`] Split `index` into multiple files
+- [`test/utils`] Replaced directory of files with a single module that contains two methods: `spawn` and `touchFile`
+- [`test/utils/run`] Moved `run` function directly into the `run` file
+- [devDependenies] Update `eslint` from `v7.23.0` to `v7.25.0`
+
 ## v6.7.0 / 2021-04-07
 
 - [New Option] `--debounce` to control how long to wait before restarting
