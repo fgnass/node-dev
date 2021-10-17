@@ -5,6 +5,7 @@ const { spawn, touchFile } = require('../utils');
 
 tap.test('Supports ECMAScript modules with experimental-specifier-resolution', t => {
   if (semver.satisfies(process.version, '<12.17')) return t.skip();
+  if (process.platform === 'win32') return t.skip('ESM support on windows is broken');
 
   spawn('--experimental-specifier-resolution=node resolution.mjs', out => {
     if (out.match(/touch message.js/)) {
@@ -20,6 +21,8 @@ tap.test('Supports ECMAScript modules with experimental-specifier-resolution', t
 });
 
 tap.test('Supports ECMAScript modules', t => {
+  if (process.platform === 'win32') return t.skip('ESM support on windows is broken');
+
   spawn('ecma-script-modules.mjs', out => {
     if (out.match(/touch message.mjs/)) {
       touchFile('message.mjs');
