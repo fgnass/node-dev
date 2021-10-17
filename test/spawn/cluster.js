@@ -3,6 +3,11 @@ const tap = require('tap');
 const { spawn, touchFile } = require('../utils');
 
 tap.test('Restart the cluster', t => {
+  if (process.platform === 'win32') {
+    t.pass('Restart the cluster', { skip: 'Signals are not supported on Windows' });
+    return t.end();
+  }
+
   spawn('cluster.js', out => {
     if (out.match(/touch message\.js/m)) {
       touchFile('message.js');
