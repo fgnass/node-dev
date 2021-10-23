@@ -1,6 +1,6 @@
 import { createServer } from 'http';
 
-import * as message from '../message';
+import message from './message';
 
 const server = createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -9,8 +9,8 @@ const server = createServer((req, res) => {
 });
 
 server.once('listening', () => {
-  const addressInfo = server.address();
-  const address = typeof addressInfo === 'string' ?
+  const addressInfo = server.address() || 'unknown';
+  const address = typeof addressInfo == 'string' ?
     addressInfo : `${addressInfo.address}:${addressInfo.port}`;
 
   console.log(`Server listening on ${address}`);

@@ -54,6 +54,6 @@ exports.spawn = (cmd, cb) => {
 // but most file systems only have second precision, so wait
 // one full second before touching.
 
-exports.touchFile = filename => {
-  setTimeout(() => touch(join(dir, filename)), 1000);
+exports.touchFile = (...filepath) => {
+  setTimeout(() => touch(join(dir, ...filepath)), 1000);
 };
