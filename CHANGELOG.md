@@ -1,5 +1,20 @@
 # node-dev
 
+## v7.1.0 / 2021-10-24
+
+- [ESM] Update `experimental-loader` to use new `load` method from node `v16.12.0` onwards
+
+### Developer Updates
+
+- `@types/node` updated from `v14.14.37` to `v16.11.3`
+- `eslint` updated from `v7.25.0` to `v8.0.1`
+- `husky` updated from `v6.0.0` to `v7.0.4`
+- `lint-staged` updated from `v10.5.4` to `v11.2.3`
+- `ts-node` updated from `v9.1.1` to `v10.3.1`
+- [CI] Start testing on windows
+- [`test/utils`] `touchFile` can take a path
+- [`test/typescript`] Use `message.ts` instead of `message.js`
+
 ## v7.0.0 / 2021-05-04
 
 - [CLI] Improve command-line parsing, restore support for --require with a space
