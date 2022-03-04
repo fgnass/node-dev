@@ -53,6 +53,10 @@ There are a couple of command-line options that can be used to control which fil
 
 All command-line arguments that are not `node-dev` options are passed on to the `node` process.
 
+Please note: you may need to separate your script from other command line options with `--`, for example:
+
+`node-dev --some-node-args -- my-script.js`
+
 # Installation
 
 `node-dev` can be installed via `npm`. Installing it with the `-g` option will allow you to use it anywhere you would use `node`.
