@@ -1,5 +1,14 @@
 # node-dev
 
+## v7.2.0 / 2022-03-04
+
+- Add `--preserve-symlinks` node option
+- Update `tap` to `v15.1.6`
+- Update `eslint` to `v8.10.0`
+- [README] Fix typo
+- Add a more explicit test for "All command-line arguments that are not node-dev options are passed on to the node process."
+- [README] Add special note about delimiting scripts
+
 ## v7.1.0 / 2021-10-24
 
 - [ESM] Update `experimental-loader` to use new `load` method from node `v16.12.0` onwards
