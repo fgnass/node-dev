@@ -86,6 +86,13 @@ tap.test('--expose_gc gc.js foo', t => {
   t.end();
 });
 
+tap.test('--preserve-symlinks test', t => {
+  const argv = 'node bin/node-dev --preserve-symlinks test'.split(' ');
+  const { nodeArgs } = cli(argv);
+  t.same(nodeArgs, ['--preserve-symlinks']);
+  t.end();
+});
+
 tap.test('clear is not enabled by default', t => {
   const {
     opts: { clear }
@@ -283,3 +290,28 @@ tap.test('Repeated single dash without =', t => {
   t.same(nodeArgs, ['-u=value1', '-u=value2']);
   t.end();
 });
+
+tap.test(
+  'All command-line arguments that are not `node-dev` options are passed on to the `node` process.',
+  t => {
+    // Everything except clear gets passed to node.
+    // Don't forget to use -- to delimit!
+    const argv =
+      'node bin/node-dev --all --command-line --arguments --clear --that --are --not --node-dev --options -- test'.split(
+        ' '
+      );
+    const { nodeArgs } = cli(argv);
+
+    t.same(nodeArgs, [
+      '--all',
+      '--command-line',
+      '--arguments',
+      '--that',
+      '--are',
+      '--not',
+      '--node-dev',
+      '--options'
+    ]);
+    t.end();
+  }
+);

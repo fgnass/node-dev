@@ -51,7 +51,11 @@ There are a couple of command-line options that can be used to control which fil
 
 ## Passing arguments to node
 
-All command-line arguments that are no `node-dev` options are passed on to the `node` process.
+All command-line arguments that are not `node-dev` options are passed on to the `node` process.
+
+Please note: you may need to separate your script from other command line options with `--`, for example:
+
+`node-dev --some-node-args -- my-script.js`
 
 # Installation
 
