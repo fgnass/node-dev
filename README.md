@@ -51,7 +51,7 @@ There are a couple of command-line options that can be used to control which fil
 
 ## Passing arguments to node
 
-All command-line arguments that are no `node-dev` options are passed on to the `node` process.
+The command-line arguments "--inspect" and "--inspect-brk" will be passed on to the `node` process. All other unrecognized arguments will result in an AssertionError and the process will terminate with a non-zero exit code.
 
 # Installation
 
