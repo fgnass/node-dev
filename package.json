@@ -35,6 +35,7 @@
     "dateformat": "^3.0.3",
     "dynamic-dedupe": "^0.3.0",
     "filewatcher": "~3.0.0",
+    "get-package-type": "^0.1.0",
     "minimist": "^1.2.5",
     "node-notifier": "^8.0.1",
     "resolve": "^1.0.0",
