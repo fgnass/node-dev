@@ -1,5 +1,10 @@
 # node-dev
 
+## v7.3.0 / 2022-03-22
+
+- Add `--no-warnings` node option (@lehni)
+- Enable ESM support when package type is set to `module` (@lehni)
+
 ## v7.2.0 / 2022-03-04
 
 - Add `--preserve-symlinks` node option
