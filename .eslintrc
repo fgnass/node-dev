@@ -13,5 +13,13 @@
     "no-trailing-spaces": "error",
     "prefer-arrow-callback": "error",
     "semi": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./**/*.mjs"],
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    }
+  ]
 }

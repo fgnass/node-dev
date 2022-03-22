@@ -35,3 +35,19 @@ tap.test('Supports ECMAScript modules', t => {
     }
   });
 });
+
+tap.test('Supports ECMAScript module packages', t => {
+  if (process.platform === 'win32') return t.skip('ESM support on windows is broken');
+
+  spawn('ecma-script-module-package/index.js', out => {
+    if (out.match(/touch ecma-script-module-package\/message.js/)) {
+      touchFile('ecma-script-module-package/message.js');
+      return out2 => {
+        if (out2.match(/Restarting/)) {
+          t.match(out2, /\[INFO\] \d{2}:\d{2}:\d{2} Restarting/);
+          return { exit: t.end.bind(t) };
+        }
+      };
+    }
+  });
+});
