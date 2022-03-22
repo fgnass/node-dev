@@ -200,6 +200,13 @@ tap.test('--inspect', t => {
   t.end();
 });
 
+tap.test('--no-warnings', t => {
+  const { nodeArgs } = cli(['node', 'bin/node-dev', '--no-warnings', 'test']);
+
+  t.same(nodeArgs, ['--no-warnings']);
+  t.end();
+});
+
 tap.test('--require source-map-support/register --require ts-node/register', t => {
   const { nodeArgs } = cli([
     'node',
