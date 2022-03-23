@@ -2,12 +2,6 @@
   "notify": false,
   "ignore": ["./ignored-module.js"],
   "extensions": {
-    "js": {
-      "name": "./extension",
-      "options": {
-        "test": true
-      }
-    },
     "ts": "ts-node/register"
   }
 }

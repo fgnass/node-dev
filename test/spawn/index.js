@@ -8,6 +8,7 @@ require('./errors');
 require('./esmodule');
 require('./exit-code');
 require('./expose-gc');
+require('./extension-options');
 require('./graceful-ipc');
 require('./inspect');
 require('./kill-fork');
