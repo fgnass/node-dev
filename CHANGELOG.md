@@ -1,5 +1,11 @@
 # node-dev
 
+## v7.3.1 / 2022-03-24
+
+- Add `--experimental-modules` for ESM module support on node <12.17 (@bjornstar)
+- Use `ipc.mjs` for `get-source-loader.mjs` (@bjornstar)
+- [`test`] Move extensions options tests into their own directory (@bjornstar)
+
 ## v7.3.0 / 2022-03-22
 
 - Add `--no-warnings` node option (@lehni)
