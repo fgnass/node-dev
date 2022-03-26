@@ -9,7 +9,9 @@ const dir = join(__dirname, 'fixture');
 
 const reClear = new RegExp(control);
 
-exports.spawn = (cmd, cb) => {
+const noop = () => {/**/};
+
+exports.spawn = (cmd, cb = noop) => {
   const ps = spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
   let err = '';
 
