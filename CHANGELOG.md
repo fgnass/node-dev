@@ -1,5 +1,13 @@
 # node-dev
 
+## v7.4.0 / 2022-03-26
+
+- Use `--require` to invoke the wrapper (@kherock)
+- [`loaders`] Use `fileURLToPath` to ensure support on Windows (@kherock)
+- [`wrap`] Suppress warnings about using experimental loaders (@kherock)
+- [`tests`] Ensure tests pass even if warnings are emitted (@bjornstar)
+- [CI] Add tests for node v12.10, v12.16, and v17 (@bjornstar)
+
 ## v7.3.1 / 2022-03-24
 
 - Add `--experimental-modules` for ESM module support on node <12.17 (@bjornstar)
