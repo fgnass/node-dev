@@ -10,7 +10,7 @@ const dir = join(__dirname, 'fixture');
 const reClear = new RegExp(control);
 
 exports.spawn = (cmd, cb) => {
-  const ps = spawn('node', [bin, '--no-warnings'].concat(cmd.split(' ')), { cwd: dir });
+  const ps = spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
   let err = '';
 
   function errorHandler(data) {
