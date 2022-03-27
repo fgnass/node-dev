@@ -1,5 +1,9 @@
 # node-dev
 
+## v7.4.1 / 2022-03-27
+
+- [`loaders`] Do not attempt to resolve urls unless they are `file://` urls (@bjornstar)
+
 ## v7.4.0 / 2022-03-26
 
 - Use `--require` to invoke the wrapper (@kherock)
