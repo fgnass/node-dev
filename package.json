@@ -19,15 +19,24 @@
     "url": "http://github.com/fgnass/node-dev.git"
   },
   "license": "MIT",
+  "type": "module",
   "bin": {
-    "node-dev": "bin/node-dev"
+    "node-dev": "bin/node-dev.js"
   },
   "main": "./lib",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "icons/",
+    "lib/"
+  ],
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "lint": "eslint lib test bin/node-dev",
+    "lint": "eslint lib test bin",
     "test": "node test",
     "prepare": "husky install"
   },
@@ -54,7 +63,7 @@
     "typescript": "^4.6.3"
   },
   "lint-staged": {
-    "*.{js,mjs}": "eslint --cache --fix",
-    "*.{js,md}": "prettier --write"
+    "*.{js,cjs,mjs}": "eslint --cache --fix",
+    "*.{js,cjs,mjs,md}": "prettier --write"
   }
 }

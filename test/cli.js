@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const cli = require('../lib/cli.js');
+import cli from '../lib/cli.js';
 
 tap.test('notify is enabled by default', t => {
   const {

@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('../utils');
+import { spawn, touchFile } from '../utils.js';
 
 tap.test('should restart the server twice', t => {
   spawn('server.js', out => {

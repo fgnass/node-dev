@@ -1,8 +1,8 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('../utils');
+import { spawn, touchFile } from '../utils.js';
 
-const { control } = require('../../lib/clear');
+import { control } from '../../lib/clear.js';
 
 const reClear = new RegExp(control);
 

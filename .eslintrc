@@ -6,20 +6,13 @@
   "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings"],
   "plugins": ["import"],
   "parserOptions": {
-    "ecmaVersion": 11
+    "ecmaVersion": 13,
+    "sourceType": "module"
   },
   "rules": {
     "eqeqeq": "error",
     "no-trailing-spaces": "error",
     "prefer-arrow-callback": "error",
     "semi": "error"
-  },
-  "overrides": [
-    {
-      "files": ["./**/*.mjs"],
-      "parserOptions": {
-        "sourceType": "module"
-      }
-    }
-  ]
+  }
 }

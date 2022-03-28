@@ -1,7 +1,7 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { defaultConfig } = require('../lib/cfg');
-const logFactory = require('../lib/log');
+import { defaultConfig } from '../lib/cfg.cjs';
+import logFactory from '../lib/log.cjs';
 
 const noColorCfg = { ...defaultConfig, noColor: true };
 

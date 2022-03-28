@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn } = require('../utils');
+import { spawn } from '../utils.js';
 
 tap.test('should *not* set NODE_ENV', t => {
   spawn('env.js', out => {

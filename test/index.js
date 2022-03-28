@@ -1,4 +1,4 @@
-require('./cli');
-require('./log');
-require('./run');
-require('./spawn');
+import './cli.js';
+import './log.js';
+import './run.js';
+import './spawn/index.js';

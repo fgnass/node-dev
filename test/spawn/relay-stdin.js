@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn } = require('../utils');
+import { spawn } from '../utils.js';
 
 tap.test('should relay stdin', t => {
   spawn('echo.js', out => {

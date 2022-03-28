@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('./utils');
+import { spawn, touchFile } from './utils.js';
 
 const run = (cmd, exit) => {
   return spawn(cmd, out => {
