@@ -1,5 +1,9 @@
 # node-dev
 
+## v7.4.2 / 2022-03-29
+
+- [wrap] Worker threads inherit node arguments, we only need the main thread to listen for file changes (@lehni)
+
 ## v7.4.1 / 2022-03-27
 
 - [`loaders`] Do not attempt to resolve urls unless they are `file://` urls (@bjornstar)
