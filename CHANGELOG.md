@@ -1,5 +1,11 @@
 # node-dev
 
+## v7.4.3 / 2022-04-17
+
+- [`loaders`] Pass on unsupported extension errors when format is not `builtin` or `commonjs` (@bjornstar)
+- [`devDependencies`] Update most devDependencies to their latest versions (@bjornstar)
+- [`dependencies`] Update `minimist`, `resolve` & `semver` (@bjornstar)
+
 ## v7.4.2 / 2022-03-29
 
 - [wrap] Worker threads inherit node arguments, we only need the main thread to listen for file changes (@lehni)
