@@ -42,7 +42,7 @@
     "semver": "^7.3.7"
   },
   "devDependencies": {
-    "@types/node": "^17.0.24",
+    "@types/node": "^18.11.18",
     "eslint": "^8.13.0",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.4",
