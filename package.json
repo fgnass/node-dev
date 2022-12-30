@@ -1,6 +1,6 @@
 {
   "name": "node-dev",
-  "version": "7.4.3",
+  "version": "8.0.0",
   "description": "Restarts your app when files are modified",
   "keywords": [
     "restart",
@@ -43,12 +43,12 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "eslint": "^8.13.0",
+    "eslint": "^8.30.0",
     "eslint-plugin-import": "^2.26.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.8",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.6.2",
-    "tap": "^16.0.1",
+    "tap": "^16.3.2",
     "tap-xunit": "^2.4.1",
     "touch": "^3.1.0",
     "ts-node": "^10.7.0",

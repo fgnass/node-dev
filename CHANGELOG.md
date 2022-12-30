@@ -1,5 +1,11 @@
 # node-dev
 
+## v8.0.0 / 2022-12-30
+
+- Suppress experimental warnings in node v18 (@tmont)
+- Drop support for node v12, new minimum version of node is v14 (@bjornstar)
+- [`devDependencies] Update `@types/node`, `eslint`, `husky`, `lint-staged`, & `tap` (@bjornstar)
+
 ## v7.4.3 / 2022-04-17
 
 - [`loaders`] Pass on unsupported extension errors when format is not `builtin` or `commonjs` (@bjornstar)
