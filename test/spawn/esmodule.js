@@ -1,12 +1,8 @@
-const semver = require('semver');
 const tap = require('tap');
 
 const { spawn, touchFile } = require('../utils');
 
 tap.test('Supports ECMAScript modules with experimental-specifier-resolution', t => {
-  if (semver.satisfies(process.version, '<12.17'))
-    return t.skip('experimental-specifier-resolution requires node >= 12.17');
-
   spawn('--experimental-specifier-resolution=node resolution.mjs', out => {
     if (out.match(/touch message.js/)) {
       touchFile('message.js');
