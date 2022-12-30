@@ -7,6 +7,7 @@ require('./conceal');
 require('./errors');
 require('./esmodule');
 require('./exit-code');
+require('./experimental-warnings');
 require('./expose-gc');
 require('./extension-options');
 require('./graceful-ipc');
