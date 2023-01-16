@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('../utils');
+import { spawn, touchFile } from '../utils.js';
 
 tap.test('Restart the cluster', t => {
   if (process.platform === 'win32') {

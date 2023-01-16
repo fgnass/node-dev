@@ -1,5 +1,5 @@
-const tap = require('tap');
-const { spawn } = require('../utils');
+import tap from 'tap';
+import { spawn } from '../utils.js';
 
 tap.test('Should suppress experimental warning spam', t => {
   spawn('env.js', out => {

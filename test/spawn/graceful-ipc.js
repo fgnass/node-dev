@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('../utils');
+import { spawn, touchFile } from '../utils.js';
 
 tap.test('should send IPC message when configured', t => {
   spawn('--graceful_ipc=node-dev:restart ipc-server.js', out => {

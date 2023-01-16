@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('../utils');
+import { spawn, touchFile } from '../utils.js';
 
 tap.test('Supports ECMAScript modules with experimental-specifier-resolution', t => {
   spawn('--experimental-specifier-resolution=node resolution.mjs', out => {

@@ -1,18 +1,21 @@
-const { spawn } = require('child_process');
-const { join } = require('path');
-const touch = require('touch');
+import { spawn as _spawn } from 'child_process';
+import { join } from 'path';
+import touch from 'touch';
+import { fileURLToPath } from 'url';
 
-const { control } = require('../lib/clear');
+import { control } from '../lib/clear.js';
 
-const bin = join(__dirname, '..', 'bin', 'node-dev');
-const dir = join(__dirname, 'fixture');
+const bin = fileURLToPath(new URL('../bin/node-dev.js', import.meta.url));
+const dir = fileURLToPath(new URL('fixture', import.meta.url));
 
 const reClear = new RegExp(control);
 
-const noop = () => {/**/};
+const noop = () => {
+  /**/
+};
 
-exports.spawn = (cmd, cb = noop) => {
-  const ps = spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
+export function spawn(cmd, cb = noop) {
+  const ps = _spawn('node', [bin].concat(cmd.split(' ')), { cwd: dir });
   let err = '';
 
   function errorHandler(data) {
@@ -50,12 +53,12 @@ exports.spawn = (cmd, cb = noop) => {
   ps.stdout.on('data', outHandler);
 
   return ps;
-};
+}
 
 // filewatcher requires a new mtime to trigger a change event
 // but most file systems only have second precision, so wait
 // one full second before touching.
 
-exports.touchFile = (...filepath) => {
+export function touchFile(...filepath) {
   setTimeout(() => touch(join(dir, ...filepath)), 1000);
-};
+}

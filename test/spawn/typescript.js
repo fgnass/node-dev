@@ -1,6 +1,6 @@
-const tap = require('tap');
+import tap from 'tap';
 
-const { spawn, touchFile } = require('../utils');
+import { spawn, touchFile } from '../utils.js';
 
 tap.test('Uses ts-node/register for .ts files through config file (also the default)', t => {
   spawn('typescript/index.ts', out => {
