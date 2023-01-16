@@ -27,7 +27,7 @@ if (!isMainThread) {
 
 if (isMainThread) {
   const workers = [...Array(2).keys()].map(n => {
-    console.log('Forking worker', n);
+    console.log('Creating worker thread', n);
     return createWorker(n);
   });
 
