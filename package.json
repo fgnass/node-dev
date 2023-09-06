@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "dateformat": "^3.0.3",
+    "debounce": "^1.2.1",
     "dynamic-dedupe": "^0.3.0",
     "filewatcher": "~3.0.0",
     "get-package-type": "^0.1.0",
