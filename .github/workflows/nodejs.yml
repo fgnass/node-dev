@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["14.x", "16.x", "18.x"]
+        node-version: ["14.x", "16.x", "18.x", "20.x"]
 
     steps:
     - uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["14.x", "16.x", "18.x"]
+        node-version: ["14.x", "16.x", "18.x", "20.x"]
 
     steps:
     - uses: actions/checkout@v2
@@ -37,5 +37,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - if: matrix.node-version == '14.x'
+      run: npm install -g npm@9 # node 14 comes with npm 6, which has some known bugs with dependency resolution
     - run: npm i
     - run: npm test
