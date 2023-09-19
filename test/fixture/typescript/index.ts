@@ -21,6 +21,7 @@ process.once('SIGTERM', () => {
   if (server.listening) {
     server.close();
   }
+  process.exit(0);
 });
 
 process.once('beforeExit', () => console.log('exit'));

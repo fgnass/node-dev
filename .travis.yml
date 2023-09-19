@@ -4,7 +4,6 @@ jobs:
       script: npm run lint
 language: node_js
 node_js:
+  - 20
   - 18
-  - 16
-  - 14
 sudo: false
