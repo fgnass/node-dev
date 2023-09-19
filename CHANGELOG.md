@@ -1,5 +1,14 @@
 # node-dev
 
+## v9.0.0 / 2023-09-16
+
+- Drop support for node v14 and v16, the new minimum version of node is v18 (@bjornstar)
+- Add support for node v20 (@bjornstar)
+- Removed tests for `experimental-specifier-resolution` as it's no longer supported (@bjornstar)
+- [CI] Test v18 & v20 (@bjornstar)
+- [CI] Perform linting and prettier in github actions (@bjornstar)
+- [`devDependencies`] Update most devDependencies to their latest version (@bjornstar)
+
 ## v8.0.0 / 2022-12-30
 
 - Suppress experimental warnings in node v18 (@tmont)

@@ -19,12 +19,12 @@ server
 process.on('message', data => {
   if (data === 'node-dev:restart') {
     console.log('ipc-server.js - IPC received');
-    server.close();
+    server.close(() => process.exit(0));
   }
 });
 
 process.once('beforeExit', () => console.log('exit'));
 
 process.once('SIGTERM', () => {
-  if (server.listening) server.close();
+  if (server.listening) server.close(() => process.exit(0));
 });

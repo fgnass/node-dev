@@ -1,4 +1,4 @@
-const { disconnect, fork, isMaster, isWorker } = require('cluster');
+const { fork, isMaster, isWorker } = require('node:cluster');
 
 const createWorker = i => {
   const worker = fork();
@@ -26,15 +26,16 @@ if (isWorker) {
 }
 
 if (isMaster) {
+  const workers = [];
   for (let i = 0; i < 2; i += 1) {
     console.log('Forking worker', i);
-    createWorker(i);
+    workers.push(createWorker(i));
   }
 
   process.once('SIGTERM', () => {
     console.log('Master received SIGTERM');
-    disconnect(() => {
-      console.log('All workers disconnected.');
-    });
+    workers.forEach(worker => worker.kill());
+    console.log('All workers disconnected.');
+    process.exit(0);
   });
 }
